@@ -1,0 +1,41 @@
+body{
+    background-color: lightgray;
+    margin: 0;
+    height: 100vh;
+}
+#main{
+    background-color: white;
+    width: 500px;
+    margin: 0 auto;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: center;
+}
+.tag{
+    font-size: 20px;
+}
+label{
+    display: block;
+    margin-top: 20px;
+    margin-bottom: 5px;
+}
+.box{
+    margin-bottom: 10px;
+    font-size: 20px;
+}
+input{
+    font-size: 20px;
+    padding: 5px 10px;
+}
+#submit{
+    margin: 20px 0;
+}
+#advice{
+    color: red;
+    margin-bottom: 10px;
+}
+a{
+    text-decoration:none;
+}
