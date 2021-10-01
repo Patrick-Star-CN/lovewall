@@ -1,3 +1,3 @@
-# j10c_lovewall
+# lovewall
 
-major front-end part for LOVEWALL.
+major front-end part of LOVEWALL. 
