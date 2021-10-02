@@ -22,19 +22,19 @@ label{
     margin-bottom: 5px;
 }
 .box{
-    margin-bottom: 10px;
     font-size: 20px;
 }
 input{
-    font-size: 20px;
+    width: 250px;
     padding: 5px 10px;
 }
 #submit{
     margin: 20px 0;
 }
-#advice{
-    color: red;
+.advice{
+    color: gray;
     margin-bottom: 10px;
+    font-size: 10px;
 }
 a{
     text-decoration:none;
