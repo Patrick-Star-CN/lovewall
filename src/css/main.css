@@ -1,0 +1,59 @@
+body{
+    background-color: chocolate;
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+
+}
+#header{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+#title{
+    color: black;
+    font-size: 30px;
+    background-color: white;
+    padding: 3px;
+    margin: 10px;
+}
+#main{
+}
+.note{
+    background-color: burlywood;
+    width: 300px;
+    margin: 10px;
+    padding: 20px;
+}
+#notes{
+    margin: 10px auto 0 auto;
+    width: 1200px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: space-between;
+    background-color: chocolate;
+    justify-content: center;
+    align-items: center;
+}
+.quote{
+    font-size: 40px;
+    font-family:'Times New Roman', Times, serif;
+    position: relative;
+    margin: 0 15px;
+}
+.sheet{
+    font-size: 20px;
+}   
+.attach{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 5px;
+}
+.object{
+    color: gray;
+    font-family:'Times New Roman', Times, serif;
+}
+#footer{
+    margin: 20px auto;
+}
