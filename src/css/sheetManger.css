@@ -1,37 +1,125 @@
 body{   
-    background-color: gray;
+    background-color: rgb(241, 241, 241);
     margin: 0;
 }
 #header{
     width: 100%;
-    height: 70px;
-    background-color: whitesmoke;
-    border-bottom: 2px solid black;
-    position: fixed;
+    height: 6vh;
     top: 0;
-}
-#main{
+    background-color: whitesmoke;
+    border-bottom: 2px solid gray;
+    position: fixed;
+    z-index: 2;
     display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    align-content: space-around;
+    justify-content: space-between;
+    align-items: center;
+}
+#title{
+    font-size: 24px;
+    margin-left: 20px;
+}
 
-    width: 1000px;
-    background-color: white;
-    margin: 100px auto 0 auto;
-}
-#showArea{
-    width: 100%;
+#sidebar{
+    height: 94vh;
+    background-color: rgb(241, 241, 241);
+    top: 6vh;
+    position: fixed;
+    z-index: 1;
     display: flex;
     flex-direction: column;
-    flex-wrap: wrap;
-    align-content: space-around;
+    border-right: 2px solid gray;
 }
-.sheet{
-    height: 100px;
-    width: 80%;
-    background-color: blanchedalmond;
-    border: 2px solid black;
-    margin: 5px;
+#workArea{
     
+    z-index: 0;
+    margin: 6vh 0 0 190px;
+    padding: 40px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.tablinks{
+    width: 150px;
+    background-color: inherit;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    margin: 0 auto;
+    padding: 14px 20px;
+    transition: 0.3s;
+    font-size: 17px;
+    user-select: none;
+    
+}
+.tablinks:hover{
+    background-color: #ddd;
+}
+#editor{
+    background-color: white;
+    padding: 30px;
+    margin: 10px;
+}
+#content{
+    font-size: 20px;
+    padding: 10px;
+    min-height: 200px;
+    min-width: 300px;
+    max-height: 200px;
+    max-width: 300px;
+    
+}
+#tools{
+    width: 100%;
+    margin: 20px 0;
+}
+#preview{
+    margin: 10px;
+    background-color: white;
+}
+.note{
+    background-color: burlywood;
+    width: 300px;
+    margin: 10px;
+    padding: 20px;
+    
+}
+.quote{
+    font-size: 40px;
+    font-family:'Times New Roman', Times, serif;
+    position: relative;
+    margin: 0 15px;
+}
+#sheet{
+    font-size: 20px;
+    word-break: break-all;
+}
+.attach{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 5px;
+}
+.object{
+    color: gray;
+    font-family:'Times New Roman', Times, serif;
+}
+label{
+    display: block;
+    margin-top: 20px;
+    margin-bottom: 5px;
+}
+.box{
+    font-size: 15px;
+}
+input{
+    width: 300px;
+    padding: 5px 10px;
+}
+.advice{
+    color: gray;
+    margin-bottom: 10px;
+    font-size: 10px;
+}
+#submit{
+    width: 324px;
+    margin-top: 20px;
 }
