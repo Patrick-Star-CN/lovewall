@@ -13,12 +13,16 @@
             <span id="title">用户表白管理界面</span>
             <span id="accounttools">
                 <span id="userName">j10c</span>
-                <span id="quit"></span>
+                <button id="quit" onclick="quit()">登出</button>
             </span>
         </div>
         <div id="sidebar">
-            <div class="tablinks" onclick="">添加表白</div>
-            <div class="tablinks" onclick="">管理表白</div>
+            <div>
+                <div class="tablinks" onclick="">添加表白</div>
+                <div class="tablinks" onclick="">管理表白</div>
+            </div>
+            
+            <div class="tablinks" onclick="toMain()">返回表白墙</div>
         </div>
         <div id="workArea">
             <div id="editor">

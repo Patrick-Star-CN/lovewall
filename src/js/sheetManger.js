@@ -41,3 +41,11 @@ function submit() {
         })
     }
 }
+
+function quit() {
+    
+}
+
+function toMain() {
+    window.location.href="../main/main.html"
+}
