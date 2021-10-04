@@ -17,7 +17,7 @@ var display = new Vue ({
 function submit() {
     var content = $("#content").val();
     var tidyName = $("#tidyName").val();
-    var userName = $("")
+    var userName = $("#userName").html();
     var patrn = /^[A-Z]{1,5}$/; //缩写合法检测
     if (!patrn.exec(tidyName)) $(".advice")[1].style.color = "red";
     else $(".advice")[1].style.color = "gray";
@@ -30,6 +30,7 @@ function submit() {
         content = content.replace(/\ +/g,""); //删除空格
         content = content.replace(/[\r\n]/g,""); //删除回车
         
+        data.userName = userName;
         data.content = content;
         data.tidyName = tidyName;
         $.ajax({
