@@ -6,7 +6,11 @@ function submit(check){
         type: "POST",
         url: "http://localhost:8080/sign_up", //
         data: JSON.stringify(data),
-        success: function(data) {alert("注册成功！")}, //根据后端返回判断是否注册成功
+        success: function(data) {
+            if (data.back == "succeed") {alert("注册成功！");window.location.href="../login/signin.html";}
+            else if(data.back == "fail") {alert("用户名已被注册！");location.reload();}
+            else {alert("未知错误...");location.reload();}
+        }, //根据后端返回判断是否注册成功
         error: function(jqXHR) {console.log("Error:" + jqXHR.status);}
     })
     else if (check == 2){
@@ -14,7 +18,12 @@ function submit(check){
             type: "POST",
             url: "http://localhost:8080/sign_in", 
             data: JSON.stringify(data),
-            success: function(data) {alert("登录成功！")}, //根据后端返回判断是否登录成功
+            success: function(data) {
+                if (data.back == "succeed") {alert("登录成功！");window.location.href="../main/main.html";}
+                else if (data.back == "unsigned") {alert("该用户还未注册！");location.reload();}
+                else if (data.back == "worsePassword")  {alert("用户名或密码错误！");}
+                else {alert("未知错误...");location.reload();}
+            }, //根据后端返回判断是否登录成功
             error: function(jqXHR) {console.log("Error:" + jqXHR.status);}
         })
     }
