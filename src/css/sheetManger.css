@@ -18,7 +18,9 @@ body{
     font-size: 24px;
     margin-left: 20px;
 }
-
+#userName{
+    margin-right: 10px;
+}
 #sidebar{
     height: 94vh;
     background-color: rgb(241, 241, 241);
