@@ -14,6 +14,12 @@ var display = new Vue ({
         }
     }
 })
+window.onload = function() {
+    var data = window.location.search; //从 URL 获取 用户名
+    data = data.split("=")[1];
+    $("#userName").html(data);
+    
+}
 function submit() {
     var content = $("#content").val();
     var tidyName = $("#tidyName").val();
@@ -21,7 +27,7 @@ function submit() {
     var patrn = /^[A-Z]{1,5}$/; //缩写合法检测
     if (!patrn.exec(tidyName)) $(".advice")[1].style.color = "red";
     else $(".advice")[1].style.color = "gray";
-     
+    
     if (content == "") $(".advice")[0].style.color = "red";
     else $(".advice")[0].style.color = "gray";
 
@@ -42,11 +48,9 @@ function submit() {
         })
     }
 }
-
 function quit() {
-    
+    window.location.href="../preview";
 }
-
 function toMain() {
-    window.location.href="../main/main.html"
+    window.location.href="../main/?user=" + $("#userName").html();
 }

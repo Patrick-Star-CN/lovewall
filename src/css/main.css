@@ -9,6 +9,7 @@ body{
     width: 100%;
     display: flex;
     justify-content: space-between;
+    align-items: center;
 }
 #title{
     color: black;
@@ -57,4 +58,18 @@ body{
 }
 #footer{
     margin: 20px auto;
+    
+}
+#tools{
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+
+    height: 300px;
+}
+#userName{
+    margin-right: 20px;
+    font-size: 20px;
 }

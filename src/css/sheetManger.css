@@ -36,7 +36,6 @@ body{
     border-right: 2px solid gray;
 }
 #workArea{
-    
     z-index: 0;
     margin: 6vh 0 0 190px;
     padding: 40px;

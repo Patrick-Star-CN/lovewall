@@ -4,12 +4,14 @@
         <meta charset="utf-8">
         <title>主页面-表白墙</title>
         <link rel="stylesheet" type="text/css" href="../src/css/main.css">
+        <script src="../src/js/jquery-3.6.0.js"></script>
     </head>
     <body>
         
         <div id="main">
             <div id="header">
                 <span id="title">表白墙</span>
+                <span id="userName">j10c</span>
             </div>
             <div id="notes">
                 <div class="note">
@@ -85,12 +87,14 @@
                     </div>
                 </div>
             </div>
-            
+        </div>
+        <div id="tools">
+            <input type="button" id="back" value="刷新表白墙">
+            <input type="button" id="next" value="添加表白" onclick="toSheetManger()">
         </div>
         <div id="footer">
-            <input type="button" id="back" value="上一页">
-            <input type="button" id="next" value="下一页">
+            
         </div>
     </body>
-
+    <script src="../src/js/main.js"></script>
 </html>

@@ -7,7 +7,7 @@ function submit(check){
         url: "http://localhost:8080/sign_up", //
         data: JSON.stringify(data),
         success: function(data) {
-            if (data.back == "succeed") {alert("注册成功！");window.location.href="../login/signin.html";}
+            if (data.back == "succeed") {alert("注册成功！");window.location.href="../signin";}
             else if(data.back == "fail") {alert("用户名已被注册！");location.reload();}
             else {alert("未知错误...");location.reload();}
         }, //根据后端返回判断是否注册成功
@@ -19,7 +19,10 @@ function submit(check){
             url: "http://localhost:8080/sign_in", 
             data: JSON.stringify(data),
             success: function(data) {
-                if (data.back == "succeed") {alert("登录成功！");window.location.href="../main/main.html";}
+                if (data.back == "succeed") {
+                    alert("登录成功！");
+                    window.location.href="../main/?user="+$("#userName").val(); //传输用户数据
+                }
                 else if (data.back == "unsigned") {alert("该用户还未注册！");location.reload();}
                 else if (data.back == "worsePassword")  {alert("用户名或密码错误！");}
                 else {alert("未知错误...");location.reload();}
