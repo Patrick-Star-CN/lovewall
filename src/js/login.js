@@ -31,7 +31,6 @@ function submit(check){
         })
     }
 }
-
 function sign_in(){ //登录
     var userName = $("#userName").val();
     var password = $("#pass").val();
@@ -40,7 +39,6 @@ function sign_in(){ //登录
     data.password = md5(password);
     submit(2);
 }
-
 function sign_up(){ //注册
     var userName = $("#userName").val();
     var tidyName = $("#tidyName").val();
