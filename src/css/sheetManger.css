@@ -54,7 +54,6 @@ body{
     transition: 0.3s;
     font-size: 17px;
     user-select: none;
-    
 }
 .tablinks:hover{
     background-color: #ddd;
@@ -75,7 +74,8 @@ body{
 }
 #tools{
     width: 100%;
-    margin: 20px 0;
+    margin: 20px 0 0 0;
+    display: flex;
 }
 #preview{
     margin: 10px;
@@ -101,7 +101,8 @@ body{
 .attach{
     display: flex;
     justify-content: space-between;
-    margin-top: 5px;
+    margin-top: 10px;
+    align-items: flex-end;
 }
 .object{
     color: gray;
@@ -127,4 +128,35 @@ input{
 #submit{
     width: 324px;
     margin-top: 20px;
+}
+#manageArea{
+    z-index: 0;
+    margin: 6vh 0 0 190px;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+}
+#internal{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: space-between;
+    align-items: flex-start;
+    background-color: white;
+    padding: 30px;
+    margin-top: 10px;
+}
+.content{
+    padding: 10px;
+    border: 1px solid black;
+    width: 70%;
+    word-break: break-all;
+}
+.check{
+    color: burlywood;
+    font-size: 5px;
+    font-family: monospace;
+}
+.check:hover{
+    color: #ddd;
 }

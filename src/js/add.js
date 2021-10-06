@@ -1,4 +1,5 @@
 var data = {};
+var userName;
 var display = new Vue ({
     el: "#workArea",
     data: {
@@ -14,16 +15,13 @@ var display = new Vue ({
         }
     }
 })
-window.onload = function() {
-    var data = window.location.search; //从 URL 获取 用户名
-    data = data.split("=")[1];
-    $("#userName").html(data);
-    
-}
+$(document).ready(function(){  
+    userName = window.location.search.split("=")[1]; //从 URL 获取 用户名
+    $("#userName").html(userName); 
+}); 
 function submit() {
     var content = $("#content").val();
     var tidyName = $("#tidyName").val();
-    var userName = $("#userName").html();
     var patrn = /^[A-Z]{1,5}$/; //缩写合法检测
     if (!patrn.exec(tidyName)) $(".advice")[1].style.color = "red";
     else $(".advice")[1].style.color = "gray";
@@ -41,16 +39,20 @@ function submit() {
         data.tidyName = tidyName;
         $.ajax({
             type: "POST",
-            url: "http://localhost:8080/send_confess", //
+            url: "http://localhost:8080/send_confess",
             data: JSON.stringify(data),
-            success: function(data) {alert("成功！")}, //根据后端返回判断是否注册成功
+            success: function(data) {alert("成功！");location.reload();}, //根据后端返回判断是否发送成功
             error: function(jqXHR) {console.log("Error:" + jqXHR.status);}
         })
     }
 }
+
 function quit() {
-    window.location.href="../preview";
+    window.location.href="../../preview";
 }
 function toMain() {
-    window.location.href="../main/?user=" + $("#userName").html();
+    window.location.href="../../main/?user=" + userName;
+}
+function toManage() {
+    window.location.href="../manage/?user=" + userName;
 }
