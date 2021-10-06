@@ -1,10 +1,9 @@
 var userName;
 
-
 $(document).ready(function(){  
     userName = window.location.search.split("=")[1]; //从 URL 获取 用户名
     getMyConfess(userName);
-}); 
+});
 function getMyConfess(userName) {
     $.ajax({
         type: "GET",
