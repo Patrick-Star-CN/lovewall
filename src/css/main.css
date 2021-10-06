@@ -18,7 +18,9 @@ body{
     padding: 3px;
     margin: 10px;
 }
-#main{
+.column{
+    display: flex;
+    flex-direction: column;
 }
 .note{
     background-color: burlywood;
@@ -35,7 +37,9 @@ body{
     align-content: space-between;
     background-color: chocolate;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
+    column-count: 4;
+    column-gap: 0;
 }
 .quote{
     font-size: 40px;
