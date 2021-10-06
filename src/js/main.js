@@ -1,9 +1,9 @@
 var userName;
 
-window.onload = function() {
+$(document).ready(function(){  
     getMessConfess(getDataFromURL());
     $("#userName").html(getDataFromURL());
-}
+}); 
 var getDataFromURL = function() {
     userName = window.location.search.split("=")[1]; //从 URL 获取 用户名
     return userName;
