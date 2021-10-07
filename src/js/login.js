@@ -1,10 +1,10 @@
 var data = {};
 
 function submit(check){
-    if (check == 1)
+    if (check == 1) //注册
     $.ajax({
         type: "POST",
-        url: "http://localhost:8080/sign_up", //
+        url: "http://localhost:8080/sign_up",
         data: JSON.stringify(data),
         success: function(data) {
             if (data.back == "succeed") {alert("注册成功！");window.location.href="../signin";}
@@ -13,7 +13,7 @@ function submit(check){
         }, //根据后端返回判断是否注册成功
         error: function(jqXHR) {console.log("Error:" + jqXHR.status);}
     })
-    else if (check == 2){
+    else if (check == 2){ // 登录
         $.ajax({
             type: "POST",
             url: "http://localhost:8080/sign_in", 
@@ -30,14 +30,6 @@ function submit(check){
             error: function(jqXHR) {console.log("Error:" + jqXHR.status);}
         })
     }
-}
-function sign_in(){ //登录
-    var userName = $("#userName").val();
-    var password = $("#pass").val();
-    data = {};
-    data.userName = userName;
-    data.password = md5(password);
-    submit(2);
 }
 function sign_up(){ //注册
     var userName = $("#userName").val();
@@ -70,4 +62,21 @@ function sign_up(){ //注册
     else {
         $(".advice")[2].style.color = "red";
     }
+}
+function sign_in(){ //登录
+    var userName = $("#userName").val();
+    var password = $("#pass").val();
+    if (userName == "") $(".advice")[0].style.color = "red";
+    else $(".advice")[0].style.color = "gray";
+
+    if (password == "") $(".advice")[1].style.color = "red";
+    else $(".advice")[0].style.color = "gray";
+    
+    if (userName != "" && password != ""){
+        data = {};
+        data.userName = userName;
+        data.password = md5(password);
+        submit(2);
+    }
+    
 }
