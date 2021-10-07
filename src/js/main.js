@@ -19,7 +19,6 @@ function getDataFromURL() {
     return userName
 }
 function getMessConfess() {
-
     $.ajax({
         type: "GET",
         url: "http://localhost:8080/main",
@@ -37,9 +36,31 @@ function getMessConfess() {
         error: function (jqXHR) { console.log("Error:" + jqXHR.status); }
     });
 }
+function comment(num) {
+    // 评论区初始化
+    $("#cover").css("display", "block");
+    $("#container").css("display", "block");
+    $("#preview-sheet").html($(".sheet")[num].innerHTML);
+    $("#preview-check").html($(".check")[num].innerHTML);
+    $("#preview-object").html($(".object")[num].innerHTML);
+    /* var confessid = $(".check")[num].innerHTML.split(".")[1];
+    $.ajax({
+        type: "GET",
+        url: "http://localhost:8080/manage_comment",
+        data: "confessid=" + confessid, // GET请求发送字符串
+        success: function (data) {
+            console.log(data.conmtent + " " + data.tidyName);
+        },
+        error: function (jqXHR) { console.log("Error:" + jqXHR.status); }
+    }); */
+}
 function toAdd() {
     window.location.href = "../userManger/add/?user=" + $("#userName").html();
 }
 function quit() {
     window.location.href = "../../preview";
+}
+function closeComment() {
+    $("#cover").css("display", "none");
+    $("#container").css("display", "none");
 }
