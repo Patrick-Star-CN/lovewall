@@ -23,22 +23,13 @@ input{
 #main{
     height: 100%;
     width: 100%;
-}
-#sheets{
-    margin: 150px auto;
-    padding: 0 30px 30px 30px;
+    font-size: 30px;
     display: flex;
     justify-content: center;
-}
-#quote{
-    font-size: 100px;
-    font-family:'Times New Roman', Times, serif;
-    position: relative;
-    margin-left: 30px;
-    top: 20px;
+    align-items: center;
 }
 #sheet{
-    font-size: 30px;
+    padding-bottom: 10%;
 }
 #footer{
     color: gray;

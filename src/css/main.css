@@ -18,6 +18,9 @@ body{
     padding: 3px;
     margin: 10px;
 }
+#accounttools{
+    margin-right: 10px;
+}
 .column{
     display: flex;
     flex-direction: column;
