@@ -72,7 +72,7 @@ body{
     max-width: 300px;
     
 }
-#tools{
+.tools{
     width: 100%;
     margin: 20px 0 0 0;
     display: flex;
@@ -94,7 +94,7 @@ body{
     position: relative;
     margin: 0 15px;
 }
-#sheet{
+.sheet{
     font-size: 20px;
     word-break: break-all;
 }

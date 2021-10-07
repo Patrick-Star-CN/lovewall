@@ -21,7 +21,6 @@ function getMessConfess(userName) {
                 ele1[i - 1].innerHTML = data.content[i];
                 ele2[i - 1].innerHTML = "—— " + data.tidyName[i];
                 ele3[i - 1].innerHTML = "No." + data.id[i];
-                //console.log(data.content[i] + " " + data.tidyName[i]); //test
             }
         },
         error: function(jqXHR) {console.log("Error:" + jqXHR.status);}
