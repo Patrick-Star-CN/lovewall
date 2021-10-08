@@ -8,7 +8,7 @@
     <script src="../src/js/jquery-3.6.0.js"></script>
 </head>
 
-<body>
+<body background="../src/img/3.png">
     <div id="cover"></div>
     <div id="container">
         <div id="commentArea">
@@ -26,61 +26,66 @@
                     </div>
                 </div>
                 <div id="commentTools">
-                    <textarea maxlength="30" placeholder="在这里写下你的评论吧！最多30个字符哦~"></textarea>
-                    <button id="submit">发表评论</button>
+                    <textarea id="commentContent" maxlength="30" placeholder="在这里写下你的评论吧！最多30个字符哦~"></textarea>
+                    <div style="display: flex;justify-content: space-between;align-items: center;">
+                        <span id="submitInfo">
+                            <span>用户名：j10c</span>
+                            <span>你姓名的英文缩写：SXF</span>
+                        </span>
+                        <button id="submit" onclick="submitComment()">发表评论</button>
+                    </div>
                 </div>
             </div>
-            <div id="publicCommits">
-                <div class="each_comment">
-                    <div class="user_info">
-                        <span class="commentUserName">Dune</span>
-                        <span class="commentTidyName">XXX</span>
-                        <span>
-                            <a>7楼</a>
-                            <a>回复</a>
-                        </span>
+            <div id="publicComments">
+                <div id="counter" style="margin: 0 0 10px 20px;">4条评论</div>
+                <div id="publicContainer">
+                    <div class="each_comment">
+                        <div class="commtentInfo">
+                            <span class="commentTidyName">XXX</span>
+                            <span>
+                                <a>7楼</a>
+                                <a>回复</a>
+                            </span>
+                        </div>
+                        <div class="content">
+                            <p>2楼那位帅哥，我破你记录啦~</p>
+                        </div>
                     </div>
-                    <div class="content">
-                        <p>2楼那位帅哥，我破你记录啦~</p>
+                    <div class="each_comment">
+                        <div class="commtentInfo">
+                            <span class="commentTidyName">XXX</span>
+                            <span>
+                                <a>7楼</a>
+                                <a>回复</a>
+                            </span>
+                        </div>
+                        <div class="content">
+                            <p>2楼那位帅哥，我破你记录啦~</p>
+                        </div>
                     </div>
-                </div>
-                <div class="each_comment">
-                    <div class="user_info">
-                        <span class="commentUserName">Dune</span>
-                        <span class="commentTidyName">XXX</span>
-                        <span>
-                            <a>7楼</a>
-                            <a>回复</a>
-                        </span>
+                    <div class="each_comment">
+                        <div class="commtentInfo">
+                            <span class="commentTidyName">XXX</span>
+                            <span>
+                                <a>7楼</a>
+                                <a>回复</a>
+                            </span>
+                        </div>
+                        <div class="content">
+                            <p>2楼那位帅哥，我破你记录啦~</p>
+                        </div>
                     </div>
-                    <div class="content">
-                        <p>2楼那位帅哥，我破你记录啦~</p>
-                    </div>
-                </div>
-                <div class="each_comment">
-                    <div class="user_info">
-                        <span class="commentUserName">Dune</span>
-                        <span class="commentTidyName">XXX</span>
-                        <span>
-                            <a>7楼</a>
-                            <a>回复</a>
-                        </span>
-                    </div>
-                    <div class="content">
-                        <p>2楼那位帅哥，我破你记录啦~</p>
-                    </div>
-                </div>
-                <div class="each_comment">
-                    <div class="user_info">
-                        <span class="commentUserName">Dune</span>
-                        <span class="commentTidyName">XXX</span>
-                        <span>
-                            <a>7楼</a>
-                            <a>回复</a>
-                        </span>
-                    </div>
-                    <div class="content">
-                        <p>2楼那位帅哥，我破你记录啦~</p>
+                    <div class="each_comment">
+                        <div class="commtentInfo">
+                            <span class="commentTidyName">XXX</span>
+                            <span>
+                                <a>7楼</a>
+                                <a>回复</a>
+                            </span>
+                        </div>
+                        <div class="content">
+                            <p>2楼那位帅哥，我破你记录啦~</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -95,51 +100,25 @@
     </div>
     <div id="notes">
         <div class="column">
-            <div class="note" onclick="comment(0)">
+            <div class="note">
                 <span class="quote">“</span>
-                <span class="sheet"></span>
+                <span class="sheet" title="点击查看评论" onclick="comment(0)"></span>
                 <div class="attach">
                     <span class="check"></span>
                     <span class="object"></span>
                 </div>
             </div>
-            <div class="note" onclick="comment(1)">
+            <div class="note">
                 <span class="quote">“</span>
-                <span class="sheet"></span>
+                <span class="sheet" title="点击查看评论" onclick="comment(1)"></span>
                 <div class="attach">
                     <span class="check"></span>
                     <span class="object"></span>
                 </div>
             </div>
-            <div class="note" onclick="comment(2)">
+            <div class="note">
                 <span class="quote">“</span>
-                <span class="sheet"></span>
-                <div class="attach">
-                    <span class="check"></span>
-                    <span class="object"></span>
-                </div>
-            </div>
-        </div>
-        <div class="column">
-            <div class="note" onclick="comment(3)">
-                <span class="quote">“</span>
-                <span class="sheet"></span>
-                <div class="attach">
-                    <span class="check"></span>
-                    <span class="object"></span>
-                </div>
-            </div>
-            <div class="note" onclick="comment(4)">
-                <span class="quote">“</span>
-                <span class="sheet"></span>
-                <div class="attach">
-                    <span class="check"></span>
-                    <span class="object"></span>
-                </div>
-            </div>
-            <div class="note" onclick="comment(5)">
-                <span class="quote">“</span>
-                <span class="sheet"></span>
+                <span class="sheet" title="点击查看评论" onclick="comment(2)"></span>
                 <div class="attach">
                     <span class="check"></span>
                     <span class="object"></span>
@@ -147,25 +126,51 @@
             </div>
         </div>
         <div class="column">
-            <div class="note" onclick="comment(6)">
+            <div class="note">
                 <span class="quote">“</span>
-                <span class="sheet"></span>
+                <span class="sheet" title="点击查看评论" onclick="comment(3)"></span>
                 <div class="attach">
                     <span class="check"></span>
                     <span class="object"></span>
                 </div>
             </div>
-            <div class="note" onclick="comment(7)">
+            <div class="note">
                 <span class="quote">“</span>
-                <span class="sheet"></span>
+                <span class="sheet" title="点击查看评论" onclick="comment(4)"></span>
                 <div class="attach">
                     <span class="check"></span>
                     <span class="object"></span>
                 </div>
             </div>
-            <div class="note" onclick="comment(8)">
+            <div class="note">
                 <span class="quote">“</span>
-                <span class="sheet"></span>
+                <span class="sheet" title="点击查看评论" onclick="comment(5)"></span>
+                <div class="attach">
+                    <span class="check"></span>
+                    <span class="object"></span>
+                </div>
+            </div>
+        </div>
+        <div class="column">
+            <div class="note">
+                <span class="quote">“</span>
+                <span class="sheet" title="点击查看评论" onclick="comment(6)"></span>
+                <div class="attach">
+                    <span class="check"></span>
+                    <span class="object"></span>
+                </div>
+            </div>
+            <div class="note">
+                <span class="quote">“</span>
+                <span class="sheet" title="点击查看评论" onclick="comment(7)"></span>
+                <div class="attach">
+                    <span class="check"></span>
+                    <span class="object"></span>
+                </div>
+            </div>
+            <div class="note">
+                <span class="quote">“</span>
+                <span class="sheet" title="点击查看评论" onclick="comment(8)"></span>
                 <div class="attach">
                     <span class="check"></span>
                     <span class="object"></span>

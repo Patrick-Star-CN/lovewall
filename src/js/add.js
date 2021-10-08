@@ -67,7 +67,7 @@ function submit() {
         }
         else {
             data.contentnew = content;
-            data.id = id; //禁用表白人
+            data.id = id; //TODO 禁用表白人
             $.ajax({
                 type: "POST",
                 url: "http://localhost:8080/edit_confess",

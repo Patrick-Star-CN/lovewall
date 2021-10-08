@@ -1,9 +1,9 @@
 body{
-    background-color: lightgray;
+    background-size: 100% auto;
     margin: 0;
 }
 #main{
-    background-color: white;
+    background-image: linear-gradient(to right, rgb(255, 255, 255,0), rgb(255, 255, 255,1));
     width: 500px;
     margin: 0 auto;
     padding: 30px;

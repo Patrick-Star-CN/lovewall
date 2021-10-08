@@ -1,4 +1,4 @@
-var userName;
+var userName, myTidyName;
 
 $(document).ready(function () {
     $("#userName").html(getDataFromURL());
@@ -27,6 +27,7 @@ function getMessConfess() {
             var ele1 = $(".sheet");
             var ele2 = $(".object");
             var ele3 = $(".check");
+            myTidyName = data.myTidyName;
             for (var i = 1; i <= 9; i++) { //用户自己发表的表白要 pin 在墙头
                 ele1[i - 1].innerHTML = data.content[i];
                 ele2[i - 1].innerHTML = "—— " + data.tidyName[i];
@@ -43,16 +44,40 @@ function comment(num) {
     $("#preview-sheet").html($(".sheet")[num].innerHTML);
     $("#preview-check").html($(".check")[num].innerHTML);
     $("#preview-object").html($(".object")[num].innerHTML);
-    /* var confessid = $(".check")[num].innerHTML.split(".")[1];
+    $("#commentContent").val("");
+    $("#submitInfo span")[0].innerHTML = "用户名：" + userName;
+    $("#submitInfo span")[1].innerHTML = "你姓名的英文缩写：" + myTidyName;
+    var confessid = $(".check")[num].innerHTML.split(".")[1];
     $.ajax({
         type: "GET",
         url: "http://localhost:8080/manage_comment",
         data: "confessid=" + confessid, // GET请求发送字符串
         success: function (data) {
-            console.log(data.conmtent + " " + data.tidyName);
+            var ele = $("#publicContainer");
+            ele.html("");
+            for (var i = 1; i <= data.content.length; i++){
+                ele.prepend("<div class='each_comment'><div class='commtentInfo'><span class='commentTidyName'>" + data.tidyName[i - 1] + "</span><span><a>" + String(i) + "楼</a><a>回复</a></span></div><div class='content'><p>" + data.content[i - 1] + "</p></div></div>");
+            }
+            console.log(data.content + " " + data.tidyName);
         },
         error: function (jqXHR) { console.log("Error:" + jqXHR.status); }
-    }); */
+    });
+}
+function submitComment() {
+    var content = $("#commentContent").val();
+    var id = $("#preview-check").html().split(".")[1];
+    var data = {};
+    data.tidyName = myTidyName;
+    data.content = content;
+    data.userName = userName;
+    data.uid = id;
+    $.ajax({
+        type: "POST",
+        url: "http://localhost:8080/send_comment",
+        data: JSON.stringify(data),
+        success: function (data) { alert("发送成功！"); }, //根据后端返回判断是否发送成功
+        error: function (jqXHR) { console.log("Error:" + jqXHR.status); }
+    })
 }
 function toAdd() {
     window.location.href = "../userManger/add/?user=" + $("#userName").html();

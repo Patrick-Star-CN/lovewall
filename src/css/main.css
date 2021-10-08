@@ -1,5 +1,5 @@
 body{
-    background-color: chocolate;
+    background-size: 100% auto;
     margin: 0;
     height: 100%;
 }
@@ -14,7 +14,6 @@ body{
 #title{
     color: black;
     font-size: 30px;
-    background-color: white;
     padding: 3px;
     margin: 10px;
 }
@@ -30,8 +29,6 @@ body{
     width: 300px;
     margin: 10px;
     padding: 20px;
-    cursor: pointer;
-    
 }
 #preview-note{
     background-color: burlywood;
@@ -51,7 +48,6 @@ body{
     flex-direction: row;
     flex-wrap: wrap;
     align-content: space-between;
-    background-color: chocolate;
     justify-content: center;
     align-items: flex-start;
 }
@@ -64,6 +60,7 @@ body{
 .sheet{
     font-size: 20px;
     word-break: break-all;
+    cursor: pointer;
 }
 #preview-sheet{
     font-size: 20px;
@@ -165,20 +162,24 @@ textarea{
     flex-direction: column;
     width: 400px;
 }
+#submitInfo span{
+    font-size: 10px;
+    color: gray;
+}
 #submit{
     margin-top: 10px;
 }
-#publicCommits{
-    padding: 40px;
+#publicComments{
+    padding: 40px 40px 20px 40px;
 }
 .each_comment{
     display: flex;
     flex-direction: column;
     width: 100%;
     border: 1px solid rgb(211, 209, 209);
-    margin: 10px;
+    margin-bottom: 10px;
 }
-.user_info{
+.commtentInfo{
     font-size: smaller;
     width: 100%-16px;
     background-color: whitesmoke;
