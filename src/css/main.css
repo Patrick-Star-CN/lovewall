@@ -25,13 +25,13 @@ body{
     flex-direction: column;
 }
 .note{
-    background-color: burlywood;
+    background-color: rgba(222, 184, 135, 0.8);
     width: 300px;
     margin: 10px;
     padding: 20px;
 }
 #preview-note{
-    background-color: burlywood;
+    background-color: rgba(222, 184, 135, 0.8);
     width: 300px;
     margin: 10px;
     padding: 20px;

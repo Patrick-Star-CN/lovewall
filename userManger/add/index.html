@@ -20,7 +20,7 @@
     </div>
     <div id="sidebar">
         <div>
-            <div class="tablinks" onclick="" style="background-color: #ddd;">添加表白</div>
+            <div class="tablinks" onclick="" style="background-color: #ddd;">发布表白</div>
             <div class="tablinks" onclick="toManage()">管理表白</div>
         </div>
 
@@ -28,11 +28,11 @@
     </div>
     <div id="workArea">
         <div id="editor">
-            <textarea id="content" title="content" placeholder="在这里输入你对TA的表白吧！" @input="writeContent"></textarea>
+            <textarea id="content" title="content" placeholder="在这里输入你对TA的表白吧！" v-model="content"></textarea>
             <div class="advice">输入一句话，尽量不要使用空格和换行</div>
             <div class="box">
                 <label for="tidyName">TA 姓名的英文缩写：</label>
-                <input type="text" id="tidyName" name="tidyName" @input="writeObject">
+                <input type="text" id="tidyName" name="tidyName" v-model="object">
                 <div class="advice">注意姓名长度，字母应大写，如“李肖”，应填写“LX”</div>
             </div>
             <div id="tools">
@@ -48,7 +48,7 @@
                 <span class="sheet">{{content}}</span>
                 <div class="attach">
                     <span class="check"></span>
-                    <span class="object">{{object}}</span>
+                    <span class="object">—— {{object}}</span>
                 </div>
             </div>
         </div>

@@ -48,7 +48,8 @@ function comment(num) {
     $("#submitInfo span")[0].innerHTML = "用户名：" + userName;
     $("#submitInfo span")[1].innerHTML = "你姓名的英文缩写：" + myTidyName;
     var confessid = $(".check")[num].innerHTML.split(".")[1];
-    $.ajax({
+    /*  后端处理评论的工作量太大了，于是放弃这块的数据传输了
+        $.ajax({
         type: "GET",
         url: "http://localhost:8080/manage_comment",
         data: "confessid=" + confessid, // GET请求发送字符串
@@ -61,7 +62,7 @@ function comment(num) {
             console.log(data.content + " " + data.tidyName);
         },
         error: function (jqXHR) { console.log("Error:" + jqXHR.status); }
-    });
+    }); */
 }
 function submitComment() {
     var content = $("#commentContent").val();
@@ -71,13 +72,13 @@ function submitComment() {
     data.content = content;
     data.userName = userName;
     data.uid = id;
-    $.ajax({
+    /* $.ajax({
         type: "POST",
         url: "http://localhost:8080/send_comment",
         data: JSON.stringify(data),
         success: function (data) { alert("发送成功！"); }, //根据后端返回判断是否发送成功
         error: function (jqXHR) { console.log("Error:" + jqXHR.status); }
-    })
+    }) */
 }
 function toAdd() {
     window.location.href = "../userManger/add/?user=" + $("#userName").html();

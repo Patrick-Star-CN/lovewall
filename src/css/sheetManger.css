@@ -141,6 +141,7 @@ input{
     flex-wrap: wrap;
     align-content: space-between;
     align-items: flex-start;
+    min-width: 1080px;
     background-color: white;
     padding: 30px;
     margin-top: 10px;

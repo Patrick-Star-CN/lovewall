@@ -8,12 +8,6 @@ var display = new Vue({
         object: ''
     },
     methods: {
-        writeContent: function (e) {
-            this.content = e.target.value;
-        },
-        writeObject: function (e) {
-            this.object = "—— " + e.target.value;
-        }
     }
 })
 
@@ -35,7 +29,7 @@ $(document).ready(function () {
         flag = false;
         userName = window.location.search.split("&")[0].split("=")[1];
         $("#userName").html(userName);
-        $(".advice")[1].innerHTML = "禁止修改表白对象";
+        $(".advice")[1].innerHTML = "编辑时禁止修改表白对象";
         $("#tidyName").attr("disabled", "disabled"); //禁止修改表白对象
         id = window.location.search.split("&")[1].split("=")[1];
         editLaunch(id);

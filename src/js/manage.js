@@ -22,12 +22,16 @@ function getMyConfess(userName) {
         data: "user=" + userName, // GET请求发送字符串
         success: function (data) {
             total = data.content.length;
-            for (i = 0; i < total; i++) {
-                var ele = document.createElement("div");
-                ele.className = "note";
-                ele.setAttribute("title", String(i));
-                ele.innerHTML = "<span class='quote'>“</span><span class='sheet'>" + data.content[i] + "</span><div class='attach'><span class='check'>No." + data.id[i] + "</span><span class='object'>—— " + data.tidyName[i] + "</span></div><div class='tools'><button class='edit' onclick='edit(" + String(i) + ")'>编辑</button><button class='delect' onclick='delect(" + String(i) + ")'>删除</button></div>";
-                document.getElementsByClassName("column")[i % 3].appendChild(ele);
+            if (total > 0)
+                for (i = 0; i < total; i++) {
+                    var ele = document.createElement("div");
+                    ele.className = "note";
+                    ele.setAttribute("title", String(i));
+                    ele.innerHTML = "<span class='quote'>“</span><span class='sheet'>" + data.content[i] + "</span><div class='attach'><span class='check'>No." + data.id[i] + "</span><span class='object'>—— " + data.tidyName[i] + "</span></div><div class='tools'><button class='edit' onclick='edit(" + String(i) + ")'>编辑</button><button class='delect' onclick='delect(" + String(i) + ")'>删除</button></div>";
+                    document.getElementsByClassName("column")[i % 3].appendChild(ele);
+                }
+            else {
+                $("#internal").html("<h3>你还没发表过表白哦~，点击左上角发表吧！</h3>")
             }
         },
         error: function (jqXHR) { console.log("Error:" + jqXHR.status); }
