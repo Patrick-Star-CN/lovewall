@@ -35,6 +35,8 @@ $(document).ready(function () {
         flag = false;
         userName = window.location.search.split("&")[0].split("=")[1];
         $("#userName").html(userName);
+        $(".advice")[1].innerHTML = "禁止修改表白对象";
+        $("#tidyName").attr("disabled", "disabled"); //禁止修改表白对象
         id = window.location.search.split("&")[1].split("=")[1];
         editLaunch(id);
     }
@@ -61,13 +63,13 @@ function submit() {
                 type: "POST",
                 url: "http://localhost:8080/send_confess",
                 data: JSON.stringify(data),
-                success: function (data) { alert("发送成功！"); location.reload(); }, //根据后端返回判断是否发送成功
+                success: function (data) { alert("添加成功！"); location.reload(); }, //根据后端返回判断是否发送成功
                 error: function (jqXHR) { console.log("Error:" + jqXHR.status); }
             })
         }
         else {
             data.contentnew = content;
-            data.id = id; //TODO 禁用表白人
+            data.id = id;
             $.ajax({
                 type: "POST",
                 url: "http://localhost:8080/edit_confess",
@@ -86,6 +88,7 @@ function editLaunch(id) {  //加载编辑模式
         success: function (data) {
             $("#content").val(data.content); //输入框 1
             $("#tidyName").val(data.tidyname); //输入框 2
+            $(".object")[0].innerHTML = "—— " + data.tidyname;
         },
         error: function (jqXHR) { console.log("Error:" + jqXHR.status); }
     });
