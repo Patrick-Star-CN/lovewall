@@ -4,6 +4,8 @@
 <head>
     <title>登录-表白墙</title>
     <meta charset="utf-8">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mdui@1.0.1/dist/css/mdui.min.css"
+        integrity="sha384-cLRrMq39HOZdvE0j6yBojO4+1PrHfB7a9l5qLcmRm/fiWXYY+CndJPmyu5FV/9Tw" crossorigin="anonymous" />
     <link rel="stylesheet" type="text/css" href="../src/css/login.css">
     <script src="../src/js/jquery-3.6.0.js"></script>
     <script src="../src/js/login.js"></script>
@@ -11,28 +13,32 @@
 
 </head>
 
-<body background="../src/img/beijing2.jpeg">
+<body background="../src/img/beijing2.jpeg" class="mdui-theme-primary-indigo mdui-theme-accent-pink">
     <center>
         <h1>登录</h1>
     </center>
     <div id="main">
         <div class="box">
             <label for="userName">用户名:</label>
-            <input type="text" id="userName" name="userName">
+            <input type="text" id="userName" class="mdui-textfield-input" name="userName">
             <div class="advice">请输入用户名</div>
         </div>
-
+        
         <div class="box">
             <label for="pass">密码:</label>
-            <input type="password" id="pass" name="password" required>
+            <input type="password" id="pass" class="mdui-textfield-input" name="password" required>
             <div class="advice">请输入密码</div>
         </div>
 
-        <input type="submit" id="submit" value="登录" onclick="sign_in()">
+        <button id="submit" class="mdui-btn mdui-color-theme-accent mdui-ripple" onclick="sign_in()">登录</button>
 
         <div>
             <span>还没有账号？</span>
             <a href="../signup">注册一个！</a>
+        </div>
+        <div style="margin-top: 10px;">
+            <span>没有账号不能访问表白墙哦~</span>
+            <a href="../preview">点击我返回预览页</a>
         </div>
     </div>
     <div id="footer"></div>

@@ -4,11 +4,13 @@
 <head>
     <meta charset="utf-8">
     <title>主页面-表白墙</title>
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/mdui@1.0.1/dist/css/mdui.min.css"/>
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/ionicons@2.0.1/css/ionicons.min.css"/>
     <link rel="stylesheet" type="text/css" href="../src/css/main.css">
     <script src="../src/js/jquery-3.6.0.js"></script>
 </head>
 
-<body background="../src/img/3.png">
+<body background="../src/img/3.png" class="mdui-theme-primary-indigo mdui-theme-accent-blue">
     <div id="cover"></div>
     <div id="container">
         <div id="commentArea">
@@ -58,13 +60,13 @@
     <div id="header">
         <span id="title">表白墙</span>
         <span id="accounttools">
-            <span id="userName">null</span>
-            <button id="quit" onclick="quit()">登出</button>
+            <div class="mdui-chip" style="margin-right: 20px;"><span id="userName" class="mdui-chip-title">null</span></div>
+            <button id="quit" onclick="quit()" class="mdui-btn mdui-color-theme-accent mdui-ripple">登出</button>
         </span>
     </div>
     <div id="notes">
         <div class="column">
-            <div class="note">
+            <div class="mdui-card note">
                 <span class="quote">“</span>
                 <span class="sheet" title="点击查看评论" onclick="comment(0)"></span>
                 <div class="attach">
@@ -144,8 +146,8 @@
     </div>
 
     <div id="tools">
-        <input type="button" id="back" value="刷新表白墙" onclick="getMessConfess()">
-        <input type="button" id="next" value="添加表白" onclick="toAdd()">
+        <div style="margin: 15px;"><button id="back" class="mdui-btn mdui-ripple mdui-fab mdui-color-theme-accent" onclick="getMessConfess()"><i class="mdui-icon material-icons">autorenew</i></button></div>
+        <div style="margin: 15px;"><button id="next" class="mdui-btn mdui-ripple mdui-fab mdui-color-theme-accent" onclick="toAdd()"><i class="mdui-icon material-icons">add</i></button></div>
     </div>
     <div id="footer">
 

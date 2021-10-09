@@ -3,17 +3,19 @@
 
 <head>
     <title>精弘表白墙</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mdui@1.0.1/dist/css/mdui.min.css"
+        integrity="sha384-cLRrMq39HOZdvE0j6yBojO4+1PrHfB7a9l5qLcmRm/fiWXYY+CndJPmyu5FV/9Tw" crossorigin="anonymous" />
     <link rel="stylesheet" href="../src/css/preview.css">
     <script src="https://cdn.bootcdn.net/ajax/libs/typed.js/2.0.12/typed.js"></script>
 </head>
 
-<body background="../src/img/r2.png">
+<body background="../src/img/r2.png" class="mdui-theme-primary-indigo mdui-theme-accent-pink">
     <!--记得注释掉背景色-->
     <div id="header">
         <span id="title">表白墙</span>
         <span id="loginTools">
-            <a href="../signin"><input id="sign_in" type="button" value="登录"></a>
-            <a href="../signup"><input id="sign_up" type="button" value="注册"></a>
+            <a href="../signin"><button id="sign_in" class="mdui-btn mdui-color-theme-accent mdui-ripple">登录</button></a>
+            <a href="../signup"><button id="sign_up" class="mdui-btn mdui-color-theme-accent mdui-ripple">注册</button></a>
         </span>
     </div>
     <div id="main">
