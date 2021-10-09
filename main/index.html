@@ -16,10 +16,10 @@
         <div id="commentArea">
             <div id="commentHeader">
                 <span id="title">评论</span>
-                <button id="closeComment" onclick="closeComment()">X</button>
+                <button id="closeComment" class="mdui-btn-icon mdui-color-theme-accent mdui-ripple" onclick="closeComment()"><i class="mdui-icon material-icons">close</i></button>
             </div>
             <div id="preview">
-                <div id="preview-note">
+                <div id="preview-note" class="mdui-card">
                     <span class="quote">“</span>
                     <span id="preview-sheet"></span>
                     <div class="attach">
@@ -28,13 +28,13 @@
                     </div>
                 </div>
                 <div id="commentTools">
-                    <textarea id="commentContent" maxlength="30" placeholder="在这里写下你的评论吧！最多30个字符哦~"></textarea>
+                    <textarea id="commentContent" class="mdui-textfield-input" maxlength="30" placeholder="在这里写下你的评论吧！最多30个字符哦~"></textarea>
                     <div style="display: flex;justify-content: space-between;align-items: center;">
                         <span id="submitInfo">
                             <span>用户名：j10c</span>
                             <span>你姓名的英文缩写：SXF</span>
                         </span>
-                        <button id="submit" onclick="submitComment()">发表评论</button>
+                        <button id="submit" class="mdui-btn mdui-color-theme-accent mdui-ripple" onclick="submitComment()">发表评论</button>
                     </div>
                 </div>
             </div>
@@ -74,7 +74,7 @@
                     <span class="object"></span>
                 </div>
             </div>
-            <div class="note">
+            <div class="mdui-card note">
                 <span class="quote">“</span>
                 <span class="sheet" title="点击查看评论" onclick="comment(1)"></span>
                 <div class="attach">
@@ -82,7 +82,7 @@
                     <span class="object"></span>
                 </div>
             </div>
-            <div class="note">
+            <div class="mdui-card note">
                 <span class="quote">“</span>
                 <span class="sheet" title="点击查看评论" onclick="comment(2)"></span>
                 <div class="attach">
@@ -92,7 +92,7 @@
             </div>
         </div>
         <div class="column">
-            <div class="note">
+            <div class="mdui-card note">
                 <span class="quote">“</span>
                 <span class="sheet" title="点击查看评论" onclick="comment(3)"></span>
                 <div class="attach">
@@ -100,7 +100,7 @@
                     <span class="object"></span>
                 </div>
             </div>
-            <div class="note">
+            <div class="mdui-card note">
                 <span class="quote">“</span>
                 <span class="sheet" title="点击查看评论" onclick="comment(4)"></span>
                 <div class="attach">
@@ -108,7 +108,7 @@
                     <span class="object"></span>
                 </div>
             </div>
-            <div class="note">
+            <div class="mdui-card note">
                 <span class="quote">“</span>
                 <span class="sheet" title="点击查看评论" onclick="comment(5)"></span>
                 <div class="attach">
@@ -118,7 +118,7 @@
             </div>
         </div>
         <div class="column">
-            <div class="note">
+            <div class="mdui-card note">
                 <span class="quote">“</span>
                 <span class="sheet" title="点击查看评论" onclick="comment(6)"></span>
                 <div class="attach">
@@ -126,7 +126,7 @@
                     <span class="object"></span>
                 </div>
             </div>
-            <div class="note">
+            <div class="mdui-card note">
                 <span class="quote">“</span>
                 <span class="sheet" title="点击查看评论" onclick="comment(7)"></span>
                 <div class="attach">
@@ -134,7 +134,7 @@
                     <span class="object"></span>
                 </div>
             </div>
-            <div class="note">
+            <div class="mdui-card note">
                 <span class="quote">“</span>
                 <span class="sheet" title="点击查看评论" onclick="comment(8)"></span>
                 <div class="attach">

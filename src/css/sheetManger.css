@@ -1,5 +1,6 @@
 body{   
-    background-color: rgb(241, 241, 241);
+    background-size: cover;
+    background-repeat: no-repeat;
     margin: 0;
 }
 #header{
@@ -8,7 +9,7 @@ body{
     top: 0;
     left: 0;
     right: 0;
-    background-color: whitesmoke;
+    background-color: rgba(245, 245, 245, 0.6);
     border-bottom: 2px solid gray;
     position: fixed;
     z-index: 2;
@@ -25,7 +26,7 @@ body{
 }
 #sidebar{
     height: 94vh;
-    background-color: whitesmoke;
+    background-color: rgba(245, 245, 245, 0.6);
     top: 6vh;
     position: fixed;
     z-index: 1;
@@ -44,7 +45,6 @@ body{
 }
 .tablinks{
     width: 150px;
-    background-color: inherit;
     border: none;
     outline: none;
     cursor: pointer;
@@ -55,12 +55,13 @@ body{
     user-select: none;
 }
 .tablinks:hover{
-    background-color: #ddd;
+    background-color: rgba(221, 221, 221, 0.6);
 }
 #editor{
-    background-color: white;
+    background-color: rgba(255, 255, 255, 0.6);
     padding: 30px;
     margin: 10px;
+    overflow: visible;
 }
 #content{
     font-size: 20px;
@@ -72,15 +73,15 @@ body{
 }
 .tools{
     width: 100%;
-    margin: 20px 0 0 0;
     display: flex;
 }
 #preview{
     margin: 10px;
-    background-color: white;
+    background-color: rgba(255, 255, 255, 0.6);
+    overflow: visible;
 }
 .note{
-    background-color: burlywood;
+    background-color: rgba(222, 184, 135, 0.8);
     width: 300px;
     margin: 10px;
     padding: 20px;
@@ -120,7 +121,7 @@ input{
 }
 .advice{
     color: gray;
-    margin-bottom: 10px;
+    margin: 10px;
     font-size: 10px;
 }
 #submit{
@@ -133,6 +134,8 @@ input{
     padding: 40px;
     display: flex;
     flex-direction: column;
+    flex-wrap: wrap;
+    align-content: center;
     align-items: flex-start;
 }
 #internal{
@@ -141,7 +144,7 @@ input{
     flex-wrap: wrap;
     align-content: space-between;
     align-items: flex-start;
-    min-width: 1080px;
+    min-width: 960px;
     background-color: white;
     padding: 30px;
     margin-top: 10px;

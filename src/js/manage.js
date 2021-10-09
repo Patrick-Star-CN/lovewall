@@ -25,9 +25,9 @@ function getMyConfess(userName) {
             if (total > 0)
                 for (i = 0; i < total; i++) {
                     var ele = document.createElement("div");
-                    ele.className = "note";
+                    ele.className = "note mdui-card";
                     ele.setAttribute("title", String(i));
-                    ele.innerHTML = "<span class='quote'>“</span><span class='sheet'>" + data.content[i] + "</span><div class='attach'><span class='check'>No." + data.id[i] + "</span><span class='object'>—— " + data.tidyName[i] + "</span></div><div class='tools'><button class='edit' onclick='edit(" + String(i) + ")'>编辑</button><button class='delect' onclick='delect(" + String(i) + ")'>删除</button></div>";
+                    ele.innerHTML = "<span class='quote'>“</span><span class='sheet'>" + data.content[i] + "</span><div class='attach'><span class='check'>No." + data.id[i] + "</span><span class='object'>—— " + data.tidyName[i] + "</span></div><div class='tools mdui-btn-group'><button class='edit mdui-btn mdui-btn-dense mdui-ripple' onclick='edit(" + String(i) + ")'><i class='mdui-icon material-icons'>edit</i></button><button class='delect mdui-btn mdui-btn-dense mdui-ripple' onclick='delect(" + String(i) + ")'><i class='mdui-icon material-icons'>delete</i></button></div>";
                     document.getElementsByClassName("column")[i % 3].appendChild(ele);
                 }
             else {

@@ -4,46 +4,48 @@
 <head>
     <title>表白墙</title>
     <meta charset="UTF-8" />
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/mdui@1.0.1/dist/css/mdui.min.css"/>
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/ionicons@2.0.1/css/ionicons.min.css"/>
     <link rel="stylesheet" type="text/css" href="../../src/css/sheetManger.css">
     <script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.14/vue.min.js"></script>
     <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
 </head>
 
-<body>
+<body class="mdui-theme-primary-indigo mdui-theme-accent-pink" background="../../src/img/1.png">
     <div id="header">
         <span id="title">用户表白管理界面</span>
         <span id="accounttools">
-            <span id="userName"></span>
-            <button id="quit" onclick="quit()">登出</button>
+            <div class="mdui-chip"><span id="userName" class="mdui-chip-title"></span></div>
+            <button id="quit" class="mdui-btn mdui-color-theme-accent mdui-ripple" onclick="quit()">登出</button>
         </span>
     </div>
     <div id="sidebar">
         <div>
-            <div class="tablinks" onclick="" style="background-color: #ddd;">发布表白</div>
+            <div class="tablinks" onclick="" style="background-color: rgba(221, 221, 221, 0.6);">发布表白</div>
             <div class="tablinks" onclick="toManage()">管理表白</div>
         </div>
 
         <div class="tablinks" onclick="toMain()">返回表白墙</div>
     </div>
     <div id="workArea">
-        <div id="editor">
-            <textarea id="content" title="content" placeholder="在这里输入你对TA的表白吧！" v-model="content"></textarea>
+        <div id="editor" class="mdui-card">
+            <textarea id="content" class="mdui-textfield-input" title="content" placeholder="在这里输入你对TA的表白吧！" v-model="content"></textarea>
             <div class="advice">输入一句话，尽量不要使用空格和换行</div>
             <div class="box">
                 <label for="tidyName">TA 姓名的英文缩写：</label>
-                <input type="text" id="tidyName" name="tidyName" v-model="object">
+                <input type="text" id="tidyName" class="mdui-textfield-input" name="tidyName" v-model="object">
                 <div class="advice">注意姓名长度，字母应大写，如“李肖”，应填写“LX”</div>
             </div>
             <div id="tools">
-                <button id="submit" onclick="submit()">发送表白</button>
+                <button id="submit" class="mdui-btn mdui-color-theme-accent mdui-ripple" onclick="submit()">发送表白</button>
             </div>
         </div>
-        <div id="preview">
+        <div id="preview" class="mdui-card">
             <center>
                 <h3>预览</h3>
             </center>
-            <div class="note">
+            <div class="note" class="mdui-card">
                 <span class="quote">“</span>
                 <span class="sheet">{{content}}</span>
                 <div class="attach">
