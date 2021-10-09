@@ -4,12 +4,12 @@ $(document).ready(function () {
     $("#userName").html(getDataFromURL());
     if (userName == undefined) {
         alert("非法访问！");
-        window.location.href = "../../preview";
+        window.location.href = "../../preview/";
         return;
     }
     else if (userName == "undefined") {
         alert("你的手速太快了，请重新登录！");
-        window.location.href = "../../preview";
+        window.location.href = "../../preview/";
         return;
     }
     getMessConfess();
@@ -84,7 +84,7 @@ function toAdd() {
     window.location.href = "../userManger/add/?user=" + $("#userName").html();
 }
 function quit() {
-    window.location.href = "../../preview";
+    window.location.href = "../../preview/";
 }
 function closeComment() {
     $("#cover").css("display", "none");

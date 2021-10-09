@@ -4,12 +4,12 @@ $(document).ready(function () {
     userName = window.location.search.split("=")[1]; //从 URL 获取 用户名
     if (userName == undefined) {
         alert("非法访问！");
-        window.location.href = "../../preview";
+        window.location.href = "../../preview/";
         return;
     }
     else if (userName == "undefined") {
         alert("你的手速太快了，请重新登录！");
-        window.location.href = "../../preview";
+        window.location.href = "../../preview/";
         return;
     }
     $("#userName").html(userName);
@@ -70,7 +70,7 @@ function delect(num) {
 
 }
 function quit() {
-    window.location.href = "../../preview";
+    window.location.href = "../../preview/";
 }
 function toMain() {
     window.location.href = "../../main/?user=" + userName;

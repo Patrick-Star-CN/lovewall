@@ -4,10 +4,11 @@ function submit(check) {
     if (check == 1) //注册
         $.ajax({
             type: "POST",
-            url: "http://localhost:8080/sign_up",
+            //url: "http://localhost:8080/sign_up",
+            url: "http://172.20.10.3:8080/sign_up",
             data: JSON.stringify(data),
             success: function (data) {
-                if (data.back == "succeed") { alert("注册成功！"); window.location.href = "../signin"; }
+                if (data.back == "succeed") { alert("注册成功！"); window.location.href = "../signin/"; }
                 else if (data.back == "fail") { alert("用户名已被注册！"); location.reload(); }
                 else { alert("未知错误..."); location.reload(); }
             }, //根据后端返回判断是否注册成功

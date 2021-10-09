@@ -14,11 +14,11 @@ var display = new Vue({
 $(document).ready(function () {
     if (window.location.search.split("=")[1] == undefined) {
         alert("非法访问！");
-        window.location.href = "../../preview";
+        window.location.href = "../../preview/";
     }
     else if (window.location.search.split("=")[1] == "undefined") {
         alert("你的手速太快了，请重新登录！");
-        window.location.href = "../../preview";
+        window.location.href = "../../preview/";
     }
     else if (window.location.search.split("&")[1] == undefined) {
         flag = true; //添加模式
@@ -88,7 +88,7 @@ function editLaunch(id) {  //加载编辑模式
     });
 }
 function quit() {
-    window.location.href = "../../preview";
+    window.location.href = "../../preview/";
 }
 function toMain() {
     window.location.href = "../../main/?user=" + userName;
