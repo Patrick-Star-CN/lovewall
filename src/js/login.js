@@ -4,8 +4,8 @@ function submit(check) {
     if (check == 1) //注册
         $.ajax({
             type: "POST",
-            //url: "http://localhost:8080/sign_up",
-            url: "http://172.20.10.3:8080/sign_up",
+            url: "http://localhost:8080/sign_up",
+            //url: "http://172.20.10.3:8080/sign_up",
             data: JSON.stringify(data),
             success: function (data) {
                 if (data.back == "succeed") { alert("注册成功！"); window.location.href = "../signin/"; }
