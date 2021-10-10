@@ -23,9 +23,6 @@ body{
     justify-content: center;
     align-items: center;
 }
-#sheet{
-    padding-bottom: 10%;
-}
 #footer{
     color: gray;
     padding: 10px;
