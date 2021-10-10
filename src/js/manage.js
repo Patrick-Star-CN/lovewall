@@ -76,5 +76,5 @@ function toMain() {
     window.location.href = "/main/?user=" + userName;
 }
 function toAdd() {
-    window.location.href = "/userManager/add/?user=" + userName;
+    window.location.href = "../add/?user=" + userName;
 }
