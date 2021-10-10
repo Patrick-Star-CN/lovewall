@@ -94,5 +94,5 @@ function toMain() {
     window.location.href = "/main/?user=" + userName;
 }
 function toManage() {
-    window.location.href = "/userName/manage/?user=" + userName;
+    window.location.href = "/userManger/manage/?user=" + userName;
 }
