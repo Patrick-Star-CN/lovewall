@@ -14,11 +14,11 @@ var display = new Vue({
 $(document).ready(function () {
     if (window.location.search.split("=")[1] == undefined) {
         alert("非法访问！");
-        window.location.href = "../../preview/";
+        window.location.href = "/";
     }
     else if (window.location.search.split("=")[1] == "undefined") {
         alert("你的手速太快了，请重新登录！");
-        window.location.href = "../../preview/";
+        window.location.href = "/";
     }
     else if (window.location.search.split("&")[1] == undefined) {
         flag = true; //添加模式
@@ -55,7 +55,7 @@ function submit() {
             data.tidyName = tidyName;
             $.ajax({
                 type: "POST",
-                url: "http://localhost:8080/send_confess",
+                url: "http://81.69.253.122:8080/send_confess",
                 data: JSON.stringify(data),
                 success: function (data) { alert("添加成功！"); location.reload(); }, //根据后端返回判断是否发送成功
                 error: function (jqXHR) { console.log("Error:" + jqXHR.status); }
@@ -66,7 +66,7 @@ function submit() {
             data.id = id;
             $.ajax({
                 type: "POST",
-                url: "http://localhost:8080/edit_confess",
+                url: "http://81.69.253.122:8080/edit_confess",
                 data: JSON.stringify(data),
                 success: function (data) { alert("编辑成功！"); toManage(); }, //根据后端返回判断是否发送成功
                 error: function (jqXHR) { console.log("Error:" + jqXHR.status); }
@@ -77,7 +77,7 @@ function submit() {
 function editLaunch(id) {  //加载编辑模式
     $.ajax({
         type: "GET",
-        url: "http://localhost:8080/edit_confess",
+        url: "http://81.69.253.122:8080/edit_confess",
         data: "id=" + id,
         success: function (data) {
             $("#content").val(data.content); //输入框 1
@@ -88,11 +88,11 @@ function editLaunch(id) {  //加载编辑模式
     });
 }
 function quit() {
-    window.location.href = "../../preview/";
+    window.location.href = "/";
 }
 function toMain() {
-    window.location.href = "../../main/?user=" + userName;
+    window.location.href = "/main/?user=" + userName;
 }
 function toManage() {
-    window.location.href = "../manage/?user=" + userName;
+    window.location.href = "/manage/?user=" + userName;
 }

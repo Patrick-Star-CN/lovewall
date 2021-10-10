@@ -4,12 +4,12 @@ $(document).ready(function () {
     $("#userName").html(getDataFromURL());
     if (userName == undefined) {
         alert("非法访问！");
-        window.location.href = "../../preview/";
+        window.location.href = "/";
         return;
     }
     else if (userName == "undefined") {
         alert("你的手速太快了，请重新登录！");
-        window.location.href = "../../preview/";
+        window.location.href = "/";
         return;
     }
     getMessConfess();
@@ -21,7 +21,7 @@ function getDataFromURL() {
 function getMessConfess() {
     $.ajax({
         type: "GET",
-        url: "http://localhost:8080/main",
+        url: "http://81.69.253.122:8080/main",
         data: "user=" + userName, // GET请求发送字符串
         success: function (data) {
             var ele1 = $(".sheet");
@@ -81,10 +81,10 @@ function submitComment() {
     }) */
 }
 function toAdd() {
-    window.location.href = "../userManger/add/?user=" + $("#userName").html();
+    window.location.href = "/userManger/add/?user=" + $("#userName").html();
 }
 function quit() {
-    window.location.href = "../../preview/";
+    window.location.href = "/";
 }
 function closeComment() {
     $("#cover").css("display", "none");

@@ -4,12 +4,12 @@ $(document).ready(function () {
     userName = window.location.search.split("=")[1]; //从 URL 获取 用户名
     if (userName == undefined) {
         alert("非法访问！");
-        window.location.href = "../../preview/";
+        window.location.href = "/";
         return;
     }
     else if (userName == "undefined") {
         alert("你的手速太快了，请重新登录！");
-        window.location.href = "../../preview/";
+        window.location.href = "/";
         return;
     }
     $("#userName").html(userName);
@@ -18,7 +18,7 @@ $(document).ready(function () {
 function getMyConfess(userName) {
     $.ajax({
         type: "GET",
-        url: "http://localhost:8080/manage",
+        url: "http://81.69.253.122:8080/manage",
         data: "user=" + userName, // GET请求发送字符串
         success: function (data) {
             total = data.content.length;
@@ -46,7 +46,7 @@ function edit(num) {
     pos = find(num);
     var id = $(".check")[pos].innerHTML.split(".")[1];
     var content = $(".sheet")[pos].innerHTML;
-    window.location.href = "../add/?user=" + userName + "&id=" + id;
+    window.location.href = "/userManager/add/?user=" + userName + "&id=" + id;
 }
 function delect(num) {
     var confirm = window.confirm("确定要删除这条评论吗？");
@@ -55,7 +55,7 @@ function delect(num) {
         var id = $(".check")[pos].innerHTML.split(".")[1];
         $.ajax({
             type: "GET",
-            url: "http://localhost:8080/delete_confess",
+            url: "http://81.69.253.122:8080/delete_confess",
             data: "id=" + id, // GET请求发送字符串
             success: function (data) {
                 if (data.back == "succeed") {
@@ -70,11 +70,11 @@ function delect(num) {
 
 }
 function quit() {
-    window.location.href = "../../preview/";
+    window.location.href = "/";
 }
 function toMain() {
-    window.location.href = "../../main/?user=" + userName;
+    window.location.href = "/main/?user=" + userName;
 }
 function toAdd() {
-    window.location.href = "../add/?user=" + userName;
+    window.location.href = "/userManager/add/?user=" + userName;
 }
