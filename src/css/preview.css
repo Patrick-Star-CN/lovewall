@@ -9,6 +9,7 @@ body{
     padding:  10px 20px;
     display: flex;
     justify-content: space-between;
+    overflow: hidden;
 }
 #title{
     position: relative;
@@ -22,6 +23,7 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
+    padding-bottom: 10%;
 }
 #footer{
     color: gray;
