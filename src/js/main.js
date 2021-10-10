@@ -81,7 +81,7 @@ function submitComment() {
     }) */
 }
 function toAdd() {
-    window.location.href = "/userManger/add/?user=" + $("#userName").html();
+    window.location.href = "/userManager/add/?user=" + $("#userName").html();
 }
 function quit() {
     window.location.href = "/";
