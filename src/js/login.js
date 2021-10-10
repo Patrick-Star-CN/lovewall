@@ -4,7 +4,7 @@ function submit(check) {
     if (check == 1) //注册
         $.ajax({
             type: "POST",
-            url: "http://81.69.253.122:8080/sign_up",
+            url: "http://81.69.253.122:1234/sign_up",
             data: JSON.stringify(data),
             success: function (data) {
                 if (data.back == "succeed") { alert("注册成功！"); window.location.href = "/signin/"; }
@@ -16,7 +16,7 @@ function submit(check) {
     else if (check == 2) { // 登录
         $.ajax({
             type: "POST",
-            url: "http://81.69.253.122:8080/sign_in",
+            url: "http://81.69.253.122:1234/sign_in",
             data: JSON.stringify(data),
             success: function (data) {
                 if (data.back == "succeed") {

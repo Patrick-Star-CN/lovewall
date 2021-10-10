@@ -21,7 +21,7 @@ function getDataFromURL() {
 function getMessConfess() {
     $.ajax({
         type: "GET",
-        url: "http://81.69.253.122:8080/main",
+        url: "http://81.69.253.122:1234/main",
         data: "user=" + userName, // GET请求发送字符串
         success: function (data) {
             var ele1 = $(".sheet");
