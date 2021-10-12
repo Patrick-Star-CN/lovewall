@@ -21,14 +21,14 @@ function getDataFromURL() {
 function getMessConfess() {
     $.ajax({
         type: "GET",
-        url: "http://81.69.253.122:1234/main",
+        url: "http://127.0.0.1:8080/main",
         data: "user=" + userName, // GET请求发送字符串
         success: function (data) {
             var ele1 = $(".sheet");
             var ele2 = $(".object");
             var ele3 = $(".check");
             myTidyName = data.myTidyName;
-            for (var i = 1; i <= 9; i++) { //用户自己发表的表白要 pin 在墙头
+            for (var i = 1; i <= data.content.length; i++) { //用户自己发表的表白要 pin 在墙头
                 ele1[i - 1].innerHTML = data.content[i];
                 ele2[i - 1].innerHTML = "—— " + data.tidyName[i];
                 ele3[i - 1].innerHTML = "No." + data.id[i];
