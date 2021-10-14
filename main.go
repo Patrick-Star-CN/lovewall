@@ -27,10 +27,11 @@ type typeUser struct {
 	uid      string
 }
 type typeConfess struct {
-	TidyName string `json:"tidyName"`
-	Content  string `json:"content"`
-	UserName string `json:"userName"`
-	uid, id  string
+	TidyName  string `json:"tidyName"`
+	Content   string `json:"content"`
+	UserName  string `json:"userName"`
+	Anonymous string `json:"anonymous"`
+	uid, id   string
 }
 type typeEdit struct {
 	Id       string `json:"id"`
@@ -62,6 +63,8 @@ var userEditComment typeEditComment
 var userLogin typeLogin
 var contentR [10]string
 var tidyNameR [10]string
+var anonymousR [10]string
+var usernameR [10]string
 var userId [100000]string
 var userTidyName [100000]string
 var userContent [100000]string
@@ -96,6 +99,7 @@ func Cors() gin.HandlerFunc {
 }
 
 func InitDB() {
+	//打开数据库
 	path := strings.Join([]string{userName, ":", password, "@tcp(", ip, ":", port, ")/", dbName, "?charset=utf8"}, "")
 	DB, _ = sql.Open("mysql", path)
 	DB.SetConnMaxLifetime(100)
@@ -150,7 +154,7 @@ func readCommentDate() {
 
 func readConfessData() {
 	//从confessdata表中读取表白信息
-	sqlStr := "select id, uid, username, content, tidyname from confessdata where id > ?"
+	sqlStr := "select id, uid, username, content, tidyname, anonymous from confessdata where id > ?"
 	rows, err := DB.Query(sqlStr, 0)
 	if err != nil {
 		fmt.Printf("query failed, err:%v\n", err)
@@ -158,8 +162,13 @@ func readConfessData() {
 	}
 	defer rows.Close()
 	for rows.Next() {
-		var id int
-		err := rows.Scan(&id, &confess[confessNum].uid, &confess[confessNum].UserName, &confess[confessNum].Content, &confess[confessNum].TidyName)
+		var id, anonymous int
+		err := rows.Scan(&id, &confess[confessNum].uid, &confess[confessNum].UserName, &confess[confessNum].Content, &confess[confessNum].TidyName, &anonymous)
+		if anonymous == 1 {
+			confess[confessNum].Anonymous = "y"
+		} else {
+			confess[confessNum].Anonymous = "n"
+		}
 		if err != nil {
 			fmt.Printf("scan failed, err:%v\n", err)
 			return
@@ -237,12 +246,19 @@ func login(userData typeLogin) int {
 
 func getConfess(confessData typeConfess) {
 	//用于新增表白信息
+	var anonymous int
 	confess[confessNum].UserName = confessData.UserName
 	confess[confessNum].Content = confessData.Content
 	confess[confessNum].TidyName = confessData.TidyName
+	confess[confessNum].Anonymous = confessData.Anonymous
 	confess[confessNum].uid = user[findUser(confessData.UserName, 2)].uid
-	sqlStr := "insert into confessdata(uid, content, tidyname, username) values (?,?,?,?)"
-	ret, err := DB.Exec(sqlStr, confess[confessNum].uid, confess[confessNum].Content, confess[confessNum].TidyName, confess[confessNum].UserName)
+	sqlStr := "insert into confessdata(uid, content, tidyname, username, anonymous) values (?,?,?,?,?)"
+	if confess[confessNum].Anonymous == "y" {
+		anonymous = 1
+	} else {
+		anonymous = 0
+	}
+	ret, err := DB.Exec(sqlStr, confess[confessNum].uid, confess[confessNum].Content, confess[confessNum].TidyName, confess[confessNum].UserName, anonymous)
 	if err != nil {
 		fmt.Printf("insert failed, err:%v\n", err)
 		return
@@ -296,6 +312,8 @@ func getRanConfess(lim int) {
 	for i := 1; i <= min(9, confessNum); i++ {
 		contentR[i] = confess[ran[i]].Content
 		tidyNameR[i] = confess[ran[i]].TidyName
+		anonymousR[i] = confess[ran[i]].Anonymous
+		usernameR[i] = confess[ran[i]].UserName
 	}
 }
 
@@ -474,6 +492,8 @@ func main() {
 			"tidyName":   tidyNameR,
 			"id":         ranStr,
 			"myTidyName": myTidyName,
+			"anonymous":  anonymousR,
+			"username":   usernameR,
 		})
 	})
 	router.GET("/manage", func(c *gin.Context) {
