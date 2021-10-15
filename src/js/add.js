@@ -72,7 +72,7 @@ function submit() {
             data.content = content;
             data.tidyName = tidyName;
             data.anonymous = document.getElementById("anon").checked ? "y" : "n";
-            data.color = colornum;
+            data.color = String(colornum);
             console.log(data);
             // TODO
             $.ajax({
