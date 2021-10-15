@@ -76,7 +76,15 @@ body{
     color: gray;
     font-family:'Times New Roman', Times, serif;
 }
+.writer{
+    color: gray;
+    font-family:'Times New Roman', Times, serif;
+}
 #preview-object{
+    color: gray;
+    font-family:'Times New Roman', Times, serif;
+}
+#preview-writer{
     color: gray;
     font-family:'Times New Roman', Times, serif;
 }

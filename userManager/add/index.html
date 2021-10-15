@@ -4,8 +4,8 @@
 <head>
     <title>表白墙</title>
     <meta charset="UTF-8" />
-    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/mdui@1.0.1/dist/css/mdui.min.css"/>
-    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/ionicons@2.0.1/css/ionicons.min.css"/>
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/mdui@1.0.1/dist/css/mdui.min.css" />
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/ionicons@2.0.1/css/ionicons.min.css" />
     <link rel="stylesheet" type="text/css" href="/src/css/sheetManager.css">
     <script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.14/vue.min.js"></script>
     <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
@@ -30,15 +30,48 @@
     </div>
     <div id="workArea">
         <div id="editor" class="mdui-card">
-            <textarea id="content" class="mdui-textfield-input" title="content" placeholder="在这里输入你对TA的表白吧！" v-model="content"></textarea>
-            <div class="advice">输入一句话，尽量不要使用空格和换行</div>
-            <div class="box">
+            <textarea id="content" class="mdui-textfield-input" title="content" maxlength="50"
+                placeholder="在这里输入你对TA的表白吧！" v-model="content" v-on:input="inputContent"></textarea>
+            <div><span class="advice">输入一句话，尽量不要使用空格和换行</span>
+                <span id="length" class="advice">字数 {{len}} / 50</span>
+            </div>
+            <div id="box1">
                 <label for="tidyName">TA 姓名的英文缩写：</label>
-                <input type="text" id="tidyName" class="mdui-textfield-input" name="tidyName">
+                <input type="text" id="tidyName" class="mdui-textfield-input" name="tidyName" v-model="object">
                 <div class="advice">注意姓名长度，字母应大写，如“李肖”，应填写“LX”</div>
             </div>
+            <div id="box2">
+                <label>更多选项</label>
+                <div class="mdui-container">
+                    <label class="mdui-checkbox">
+                        <input id="anon" type="checkbox" />
+                        <i class="mdui-checkbox-icon"></i>
+                        匿名
+                    </label>
+                    <span class="advice">选择匿名后，署名只展示为Anon</span>
+                </div>
+                <div class="mdui-container" style="margin-top: 10px;">
+                    颜色 
+                    <div id="colors" class="mdui-btn-group">
+                        <button type="radio" class="color mdui-btn" v-on:click=changeColor(0)><i
+                                class="mdui-icon material-icons mdui-text-color-amber-100"
+                                >lens</i></button>
+                        <button type="radio" class="color mdui-btn mdui-btn-active" v-on:click=changeColor(1)><i
+                                class="mdui-icon material-icons mdui-text-color-pink-100"
+                                >lens</i></button>
+                        <button type="radio" class="color mdui-btn" v-on:click=changeColor(2)><i
+                                class="mdui-icon material-icons mdui-text-color-blue-100"
+                                >lens</i></button>
+                        <button type="radio" class="color mdui-btn" v-on:click=changeColor(3)><i
+                                class="mdui-icon material-icons mdui-text-color-green-100"
+                                >lens</i></button>
+                    </div>
+                </div>
+
+            </div>
             <div id="tools">
-                <button id="submit" class="mdui-btn mdui-color-theme-accent mdui-ripple" onclick="submit()">发送表白</button>
+                <button id="submit" class="mdui-btn mdui-color-theme-accent mdui-ripple"
+                    onclick="submit()">发送表白</button>
             </div>
         </div>
         <div id="preview" class="mdui-card">
@@ -46,11 +79,12 @@
                 <h3>预览</h3>
             </center>
             <div class="note" class="mdui-card">
+                <div class="object">To {{object}}</div>
                 <span class="quote">“</span>
                 <span class="sheet">{{content}}</span>
                 <div class="attach">
                     <span class="check"></span>
-                    <span class="object">—— {{object}}</span>
+                    <span class="writer">—— {{writer}}</span>
                 </div>
             </div>
         </div>

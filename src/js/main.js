@@ -22,15 +22,16 @@ function getMessConfess() {
     $.ajax({
         type: "GET",
         url: "http://127.0.0.1:8080/main",
-        data: "user=" + userName, // GET请求发送字符串
+        data: "user=" + userName,
         success: function (data) {
             var ele1 = $(".sheet");
             var ele2 = $(".object");
             var ele3 = $(".check");
             myTidyName = data.myTidyName;
-            for (var i = 1; i <= data.content.length; i++) { //用户自己发表的表白要 pin 在墙头
+            // TODO writer 匿名 Anon
+            for (var i = 1; i <= data.content.length - 1; i++) { //用户自己发表的表白要 pin 在墙头
                 ele1[i - 1].innerHTML = data.content[i];
-                ele2[i - 1].innerHTML = "—— " + data.tidyName[i];
+                ele2[i - 1].innerHTML = "To " + data.tidyName[i];
                 ele3[i - 1].innerHTML = "No." + data.id[i];
             }
         },
@@ -41,6 +42,7 @@ function comment(num) {
     // 评论区初始化
     $("#cover").css("display", "block");
     $("#container").css("display", "block");
+    $("#preview-writer").html($(".writer")[num].innerHTML);
     $("#preview-sheet").html($(".sheet")[num].innerHTML);
     $("#preview-check").html($(".check")[num].innerHTML);
     $("#preview-object").html($(".object")[num].innerHTML);

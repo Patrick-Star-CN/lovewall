@@ -62,6 +62,8 @@ body{
     padding: 30px;
     margin: 10px;
     overflow: visible;
+    display: flex;
+    flex-direction: column;
 }
 #content{
     font-size: 20px;
@@ -85,7 +87,7 @@ body{
     width: 300px;
     margin: 10px;
     padding: 20px;
-    
+    opacity: 0.8;
 }
 .quote{
     font-size: 40px;
@@ -107,12 +109,16 @@ body{
     color: gray;
     font-family:'Times New Roman', Times, serif;
 }
-label{
+.writer{
+    color: gray;
+    font-family:'Times New Roman', Times, serif;
+}
+#box1 label{
     display: block;
     margin-top: 20px;
     margin-bottom: 5px;
 }
-.box{
+#box1{
     font-size: 15px;
 }
 input{

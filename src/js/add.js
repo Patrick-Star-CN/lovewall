@@ -1,14 +1,32 @@
 var data = {};
-var userName, id;
+var userName, id, colornum;
 var flag = false;
 var display = new Vue({
     el: "#workArea",
     data: {
         content: '',
-        object: ''
+        object: '',
+        len: '0',
+        writer: 'Anon'
+    },
+    mounted() {
+        window.object = this.object;
     },
     methods: {
-    }
+        inputContent: function () {
+            this.len = this.content.length;
+            this.object = object;
+        },
+        changeColor: function (num) {
+            for (var i = 0; i < 4; i++) {
+                if (i == num) $(".color")[i].className = "color mdui-btn mdui-btn-active";
+                else $(".color")[i].className = "color mdui-btn";
+            }
+            let color = $(".mdui-icon")[num].className.split("mdui-text-color-")[1];
+            $(".note")[0].className = "note mdui-color-" + color;
+            colornum = num;
+        }
+    },
 })
 
 $(document).ready(function () {
@@ -29,7 +47,7 @@ $(document).ready(function () {
         flag = false;
         userName = window.location.search.split("&")[0].split("=")[1];
         $("#userName").html(userName);
-        $(".advice")[1].innerHTML = "编辑时禁止修改表白对象";
+        $(".advice")[2].innerHTML = "编辑时禁止修改表白对象";
         $("#tidyName").attr("disabled", "disabled"); //禁止修改表白对象
         id = window.location.search.split("&")[1].split("=")[1];
         editLaunch(id);
@@ -39,20 +57,24 @@ function submit() {
     var content = $("#content").val();
     var tidyName = $("#tidyName").val();
     var patrn = /^[A-Z]{1,5}$/; //缩写合法检测
-    if (!patrn.exec(tidyName)) $(".advice")[1].style.color = "red";
-    else $(".advice")[1].style.color = "gray";
+    if (!patrn.exec(tidyName)) $(".advice")[2].style.color = "red";
+    else $(".advice")[2].style.color = "gray";
 
     if (content == "") $(".advice")[0].style.color = "red";
     else $(".advice")[0].style.color = "gray";
 
     if (patrn.exec(tidyName) && content != "") {
-        $(".advice")[1].style.color = "gray";
+        $(".advice")[2].style.color = "gray";
         content = content.replace(/[\r\n]/g, ""); //删除回车
 
         if (flag == true) {
             data.userName = userName;
             data.content = content;
             data.tidyName = tidyName;
+            data.anonymous = document.getElementById("anon").checked ? "y" : "n";
+            data.color = colornum;
+            console.log(data);
+            // TODO
             $.ajax({
                 type: "POST",
                 url: "http://127.0.0.1:8080/send_confess",
@@ -82,7 +104,8 @@ function editLaunch(id) {  //加载编辑模式
         success: function (data) {
             $("#content").val(data.content); //输入框 1
             $("#tidyName").val(data.tidyname); //输入框 2
-            $(".object")[0].innerHTML = "—— " + data.tidyname;
+            object = data.tidyname;
+            $(".object")[0].innerHTML = "To " + data.tidyname;
         },
         error: function (jqXHR) { console.log("Error:" + jqXHR.status); }
     });
