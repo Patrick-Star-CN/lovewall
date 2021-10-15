@@ -31,6 +31,7 @@ type typeConfess struct {
 	Content   string `json:"content"`
 	UserName  string `json:"userName"`
 	Anonymous string `json:"anonymous"`
+	Color     string `json:"color"`
 	uid, id   string
 }
 type typeEdit struct {
@@ -65,9 +66,11 @@ var contentR [10]string
 var tidyNameR [10]string
 var anonymousR [10]string
 var usernameR [10]string
+var colorR [10]string
 var userId [100000]string
 var userTidyName [100000]string
 var userContent [100000]string
+var userColor [100000]string
 var commentId [100000]string
 var commentTidyName [100000]string
 var commentContent [100000]string
@@ -131,9 +134,9 @@ func readUserData() {
 	}
 }
 
-func readCommentDate() {
+func readCommentData() {
 	//从commentdata表中读取评论信息
-	sqlStr := "select id, confessid, content, usename, tidyname from commentdata where id > ?"
+	sqlStr := "select id, confessid, content, username, tidyname from commentdata where id > ?"
 	rows, err := DB.Query(sqlStr, 0)
 	if err != nil {
 		fmt.Printf("query failed, err:%v\n", err)
@@ -154,7 +157,7 @@ func readCommentDate() {
 
 func readConfessData() {
 	//从confessdata表中读取表白信息
-	sqlStr := "select id, uid, username, content, tidyname, anonymous from confessdata where id > ?"
+	sqlStr := "select id, uid, username, content, tidyname, anonymous, color from confessdata where id > ?"
 	rows, err := DB.Query(sqlStr, 0)
 	if err != nil {
 		fmt.Printf("query failed, err:%v\n", err)
@@ -162,13 +165,14 @@ func readConfessData() {
 	}
 	defer rows.Close()
 	for rows.Next() {
-		var id, anonymous int
-		err := rows.Scan(&id, &confess[confessNum].uid, &confess[confessNum].UserName, &confess[confessNum].Content, &confess[confessNum].TidyName, &anonymous)
+		var id, anonymous, color int
+		err := rows.Scan(&id, &confess[confessNum].uid, &confess[confessNum].UserName, &confess[confessNum].Content, &confess[confessNum].TidyName, &anonymous, &color)
 		if anonymous == 1 {
 			confess[confessNum].Anonymous = "y"
 		} else {
 			confess[confessNum].Anonymous = "n"
 		}
+		confess[confessNum].Color = strconv.Itoa(color)
 		if err != nil {
 			fmt.Printf("scan failed, err:%v\n", err)
 			return
@@ -246,19 +250,21 @@ func login(userData typeLogin) int {
 
 func getConfess(confessData typeConfess) {
 	//用于新增表白信息
-	var anonymous int
+	var anonymous, color int
 	confess[confessNum].UserName = confessData.UserName
 	confess[confessNum].Content = confessData.Content
 	confess[confessNum].TidyName = confessData.TidyName
 	confess[confessNum].Anonymous = confessData.Anonymous
+	confess[confessNum].Color = confessData.Color
 	confess[confessNum].uid = user[findUser(confessData.UserName, 2)].uid
-	sqlStr := "insert into confessdata(uid, content, tidyname, username, anonymous) values (?,?,?,?,?)"
+	sqlStr := "insert into confessdata(uid, content, tidyname, username, anonymous, color) values (?,?,?,?,?,?)"
 	if confess[confessNum].Anonymous == "y" {
 		anonymous = 1
 	} else {
 		anonymous = 0
 	}
-	ret, err := DB.Exec(sqlStr, confess[confessNum].uid, confess[confessNum].Content, confess[confessNum].TidyName, confess[confessNum].UserName, anonymous)
+	color, _ = strconv.Atoi(confess[confessNum].Color)
+	ret, err := DB.Exec(sqlStr, confess[confessNum].uid, confess[confessNum].Content, confess[confessNum].TidyName, confess[confessNum].UserName, anonymous, color)
 	if err != nil {
 		fmt.Printf("insert failed, err:%v\n", err)
 		return
@@ -314,13 +320,14 @@ func getRanConfess(lim int) {
 		tidyNameR[i] = confess[ran[i]].TidyName
 		anonymousR[i] = confess[ran[i]].Anonymous
 		usernameR[i] = confess[ran[i]].UserName
+		colorR[i] = confess[ran[i]].Color
 	}
 }
 
 func getConfessFromFile(userName string) {
 	//用于获取某用户的表白内容
 	userConfessNum = 0
-	sqlStr := "select id, content, tidyname from confessdata where username = ?"
+	sqlStr := "select id, content, tidyname, color from confessdata where username = ?"
 	rows, err := DB.Query(sqlStr, userName)
 	if err != nil {
 		fmt.Printf("query failed, err:%v\n", err)
@@ -328,8 +335,9 @@ func getConfessFromFile(userName string) {
 	}
 	defer rows.Close()
 	for rows.Next() {
-		var id int
-		err := rows.Scan(&id, &userContent[userConfessNum], &userTidyName[userConfessNum])
+		var id, color int
+		err := rows.Scan(&id, &userContent[userConfessNum], &userTidyName[userConfessNum], &color)
+		userColor[userConfessNum] = strconv.Itoa(color)
 		if err != nil {
 			fmt.Printf("scan failed, err:%v\n", err)
 			return
@@ -340,9 +348,9 @@ func getConfessFromFile(userName string) {
 }
 
 func getConfessFromFileAll() {
-	//用于获取某用户的表白内容
+	//用于获取全部用户的表白内容
 	userConfessNum = 0
-	sqlStr := "select id, content, tidyname from confessdata where id > ?"
+	sqlStr := "select id, content, tidyname, color from confessdata where id > ?"
 	rows, err := DB.Query(sqlStr, 0)
 	if err != nil {
 		fmt.Printf("query failed, err:%v\n", err)
@@ -350,8 +358,9 @@ func getConfessFromFileAll() {
 	}
 	defer rows.Close()
 	for rows.Next() {
-		var id int
-		err := rows.Scan(&id, &userContent[userConfessNum], &userTidyName[userConfessNum])
+		var id, color int
+		err := rows.Scan(&id, &userContent[userConfessNum], &userTidyName[userConfessNum], &color)
+		userColor[userConfessNum] = strconv.Itoa(color)
 		if err != nil {
 			fmt.Printf("scan failed, err:%v\n", err)
 			return
@@ -437,6 +446,8 @@ func readNew() {
 	readUserData()
 	confessNum = 0
 	readConfessData()
+	commentNum = 0
+	readCommentData()
 }
 
 func main() {
@@ -494,6 +505,7 @@ func main() {
 			"myTidyName": myTidyName,
 			"anonymous":  anonymousR,
 			"username":   usernameR,
+			"color":      colorR,
 		})
 	})
 	router.GET("/manage", func(c *gin.Context) {
@@ -501,19 +513,15 @@ func main() {
 		userName := c.Query("user")
 		if userName == "admin" {
 			getConfessFromFileAll()
-			c.JSON(http.StatusOK, gin.H{
-				"content":  userContent[0:userConfessNum],
-				"tidyName": userTidyName[0:userConfessNum],
-				"id":       userId[0:userConfessNum],
-			})
 		} else {
 			getConfessFromFile(userName)
-			c.JSON(http.StatusOK, gin.H{
-				"content":  userContent[0:userConfessNum],
-				"tidyName": userTidyName[0:userConfessNum],
-				"id":       userId[0:userConfessNum],
-			})
 		}
+		c.JSON(http.StatusOK, gin.H{
+			"content":  userContent[0:userConfessNum],
+			"tidyName": userTidyName[0:userConfessNum],
+			"id":       userId[0:userConfessNum],
+			"color":    userColor[0:userConfessNum],
+		})
 	})
 	router.POST("/edit_confess", func(c *gin.Context) {
 		readNew()
@@ -558,7 +566,7 @@ func main() {
 	router.GET("/manage_comment", func(c *gin.Context) {
 		readNew()
 		commentNum = 0
-		readCommentDate()
+		readCommentData()
 		confessId := c.Query("confessid")
 		getCommentFromFile(confessId)
 		c.JSON(http.StatusOK, gin.H{
@@ -597,6 +605,15 @@ func main() {
 		deleteComment(deleteId, 1)
 		c.JSON(http.StatusOK, gin.H{
 			"back": "succeed",
+		})
+	})
+	router.GET("/tidyname", func(c *gin.Context) {
+		readNew()
+		userName := c.Query("user")
+		myid := findUser(userName, 2)
+		myTidyName := user[myid].TidyName
+		c.JSON(http.StatusOK, gin.H{
+			"myTidyName": myTidyName,
 		})
 	})
 	router.Run(":8080")
