@@ -49,7 +49,7 @@ function edit(num) {
     window.location.href = "/userManager/add/?user=" + userName + "&id=" + id;
 }
 function delect(num) {
-    var confirm = window.confirm("确定要删除这条评论吗？");
+    var confirm = window.confirm("确定要删除这条表白吗？");
     if (confirm == true) {
         pos = find(num);
         var id = $(".check")[pos].innerHTML.split(".")[1];

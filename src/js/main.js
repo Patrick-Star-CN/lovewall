@@ -34,7 +34,8 @@ function getMessConfess() {
                 ele1[i - 1].innerHTML = data.content[i];
                 ele2[i - 1].innerHTML = "To " + data.tidyName[i];
                 ele3[i - 1].innerHTML = "No." + data.id[i];
-                if (data.anonymous[i] == "y") ele4[i - 1].innerHTML = "—— " + data.username[i];
+                if (data.anonymous[i] == "n") ele4[i - 1].innerHTML = "—— " + data.username[i];
+                else ele4[i - 1].innerHTML = "—— Anon";
             }
         },
         error: function (jqXHR) { console.log("Error:" + jqXHR.status); }

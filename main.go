@@ -14,7 +14,7 @@ import (
 
 const (
 	userName = "root"
-	password = "cxcxcx4,"
+	password = "j10c"
 	ip       = "localhost"
 	port     = "3306"
 	dbName   = "lovewall"
