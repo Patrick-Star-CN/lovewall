@@ -27,12 +27,14 @@ function getMessConfess() {
             var ele1 = $(".sheet");
             var ele2 = $(".object");
             var ele3 = $(".check");
+            var ele4 = $(".writer");
             myTidyName = data.myTidyName;
             // TODO writer 匿名 Anon
             for (var i = 1; i <= data.content.length - 1; i++) { //用户自己发表的表白要 pin 在墙头
                 ele1[i - 1].innerHTML = data.content[i];
                 ele2[i - 1].innerHTML = "To " + data.tidyName[i];
                 ele3[i - 1].innerHTML = "No." + data.id[i];
+                if (data.anonymous[i] == "y") ele4[i - 1].innerHTML = "—— " + data.username[i];
             }
         },
         error: function (jqXHR) { console.log("Error:" + jqXHR.status); }
