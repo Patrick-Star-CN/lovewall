@@ -198,6 +198,12 @@ textarea{
 .commentTidyName{
     color: gray;
 }
+#footer{
+    position: fixed;
+    color: gray;
+    padding: 10px;
+    bottom: 0;
+}
 a{
     margin-left: 10px;
     float: right;

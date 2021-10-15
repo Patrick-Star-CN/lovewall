@@ -26,6 +26,8 @@ body{
     padding-bottom: 10%;
 }
 #footer{
+    display: flex;
+    justify-content: space-between;
     color: gray;
     padding: 10px;
     bottom: 0;
