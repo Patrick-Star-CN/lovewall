@@ -13,11 +13,11 @@ import (
 )
 
 const (
-	userName = "root"
-	password = "j10c"
+	userName = "admin"
+	password = "cxcxcx4,"
 	ip       = "localhost"
 	port     = "3306"
-	dbName   = "lovewall"
+	dbName   = "admin"
 )
 
 type typeUser struct {
