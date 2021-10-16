@@ -1,5 +1,5 @@
 var data = {};
-var userName, id, colornum;
+var userName, id, colornum = 0;
 var flag = false;
 var display = new Vue({
     el: "#workArea",
@@ -7,7 +7,8 @@ var display = new Vue({
         content: '',
         object: '',
         len: '0',
-        writer: 'Anon'
+        writer: 'Anon',
+        anon: []
     },
     mounted() {
         window.object = this.object;
@@ -23,8 +24,12 @@ var display = new Vue({
                 else $(".color")[i].className = "color mdui-btn";
             }
             let color = $(".mdui-icon")[num].className.split("mdui-text-color-")[1];
-            $(".note")[0].className = "note mdui-color-" + color;
+            $(".note")[0].className = "note mdui-card mdui-color-" + color;
             colornum = num;
+        },
+        changeAnon: function (anon) {
+            this.writer = !anon.state ? "Anon" : userName;
+            anon.state = !anon.state;
         }
     },
 })

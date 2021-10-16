@@ -52,6 +52,7 @@ function comment(num) {
     // 评论区初始化
     $("#cover").css("display", "block");
     $("#container").css("display", "block");
+    $("#preview-note").attr("class", "mdui-card " + $(".note")[num].className.split(" ")[2]);
     $("#preview-writer").html($(".writer")[num].innerHTML);
     $("#preview-sheet").html($(".sheet")[num].innerHTML);
     $("#preview-check").html($(".check")[num].innerHTML);
@@ -67,6 +68,8 @@ function comment(num) {
         success: function (data) {
             var ele = $("#publicContainer");
             ele.html("");
+            if (data.content.length != 0) $("#counter").html(String(data.content.length) + "条评论");
+            else $("#counter").html("·还没有评论呢，快来抢沙发吧！");
             for (var i = 1; i <= data.content.length; i++) {
                 ele.prepend("<div class='each_comment'><div class='commtentInfo'><span class='commentTidyName'>" + data.tidyName[i - 1] + "</span><span><a>" + String(i) + "楼</a><a>回复</a></span></div><div class='content'><p>" + data.content[i - 1] + "</p></div></div>");
             }
