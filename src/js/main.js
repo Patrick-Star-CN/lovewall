@@ -62,7 +62,7 @@ function comment(num) {
     var confessid = $(".check")[num].innerHTML.split(".")[1];
     $.ajax({
         type: "GET",
-        url: "http://localhost:8080/manage_comment",
+        url: "http://127.0.0.1:8080/manage_comment",
         data: "confessid=" + confessid, // GET请求发送字符串
         success: function (data) {
             var ele = $("#publicContainer");
