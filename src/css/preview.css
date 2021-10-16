@@ -4,6 +4,7 @@ body{
     margin: 0;
     height: 100vh;
     background-size:100% auto;
+    background-position: bottom;
 }
 #header{
     padding:  10px 20px;
@@ -18,7 +19,7 @@ body{
 #main{
     height: 100%;
     width: auto;
-    font-size: 25px;
+    font-size: 30px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -36,7 +37,7 @@ body{
 }
 #img1{
     position: relative;
-    top: 100px;
+    top: 200px;
     max-height: 100%;
     height: auto;
 }
