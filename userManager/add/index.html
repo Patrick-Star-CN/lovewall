@@ -44,7 +44,7 @@
                 <label>更多选项</label>
                 <div class="mdui-container">
                     <label class="mdui-checkbox">
-                        <input id="anon" type="checkbox" />
+                        <input id="anon" type="checkbox" v-on:click=changeAnon(anon) v-model="anon.state" checked/>
                         <i class="mdui-checkbox-icon"></i>
                         匿名
                     </label>
@@ -57,7 +57,7 @@
                                 class="mdui-icon material-icons mdui-text-color-amber-100"
                                 >lens</i></button>
                         <button type="radio" class="color mdui-btn" v-on:click=changeColor(1)><i
-                                class="mdui-icon material-icons mdui-text-color-pink-100"
+                                class="mdui-icon material-icons mdui-text-color-blue-100"
                                 >lens</i></button>
                         <button type="radio" class="color mdui-btn" v-on:click=changeColor(2)><i
                                 class="mdui-icon material-icons mdui-text-color-red-100"
@@ -78,7 +78,7 @@
             <center>
                 <h3>预览</h3>
             </center>
-            <div class="note" class="mdui-card">
+            <div class="note mdui-card mdui-color-amber-100">
                 <div class="object">To {{object}}</div>
                 <span class="quote">“</span>
                 <span class="sheet">{{content}}</span>

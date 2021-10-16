@@ -29,6 +29,7 @@ body{
     width: 300px;
     margin: 10px;
     padding: 20px;
+    opacity: 0.8;
 }
 #preview-note{
     background-color: rgba(222, 184, 135, 0.8);
@@ -103,15 +104,16 @@ body{
     font-size: 20px;
 }
 .check{
-    color: burlywood;
+    color: black;
     font-size: 5px;
     font-family: monospace;
+    opacity: 0;
 }
 .check:hover{
-    color: #ddd;
+    opacity: 1;
 }
 #preview-check{
-    color: #ddd;
+    color: black;
     font-size: 5px;
     font-family: monospace;
 }

@@ -1,5 +1,10 @@
 var userName, myTidyName;
-
+var noteColor = [
+    "mdui-color-amber-100",
+    "mdui-color-blue-100",
+    "mdui-color-red-100",
+    "mdui-color-purple-100"
+];
 $(document).ready(function () {
     $("#userName").html(getDataFromURL());
     if (userName == undefined) {
@@ -21,9 +26,10 @@ function getDataFromURL() {
 function getMessConfess() {
     $.ajax({
         type: "GET",
-        url: "http://81.69.253.122:1234/main",
+        url: "http://127.0.0.1:8080/main",
         data: "user=" + userName,
         success: function (data) {
+            var ele0 = $(".note");
             var ele1 = $(".sheet");
             var ele2 = $(".object");
             var ele3 = $(".check");
@@ -31,6 +37,7 @@ function getMessConfess() {
             myTidyName = data.myTidyName;
             // TODO writer 匿名 Anon
             for (var i = 1; i <= data.content.length - 1; i++) { //用户自己发表的表白要 pin 在墙头
+                ele0[i - 1].className = "mdui-card note " + noteColor[Number(data.color[i])];
                 ele1[i - 1].innerHTML = data.content[i];
                 ele2[i - 1].innerHTML = "To " + data.tidyName[i];
                 ele3[i - 1].innerHTML = "No." + data.id[i];
@@ -45,6 +52,7 @@ function comment(num) {
     // 评论区初始化
     $("#cover").css("display", "block");
     $("#container").css("display", "block");
+    $("#preview-note").attr("class", "mdui-card " + $(".note")[num].className.split(" ")[2]);
     $("#preview-writer").html($(".writer")[num].innerHTML);
     $("#preview-sheet").html($(".sheet")[num].innerHTML);
     $("#preview-check").html($(".check")[num].innerHTML);
@@ -53,21 +61,22 @@ function comment(num) {
     $("#submitInfo span")[0].innerHTML = "用户名：" + userName;
     $("#submitInfo span")[1].innerHTML = "你姓名的英文缩写：" + myTidyName;
     var confessid = $(".check")[num].innerHTML.split(".")[1];
-    /*  后端处理评论的工作量太大了，于是放弃这块的数据传输了
-        $.ajax({
+    $.ajax({
         type: "GET",
-        url: "http://localhost:8080/manage_comment",
+        url: "http://127.0.0.1:8080/manage_comment",
         data: "confessid=" + confessid, // GET请求发送字符串
         success: function (data) {
             var ele = $("#publicContainer");
             ele.html("");
-            for (var i = 1; i <= data.content.length; i++){
+            if (data.content.length != 0) $("#counter").html(String(data.content.length) + "条评论");
+            else $("#counter").html("·还没有评论呢，快来抢沙发吧！");
+            for (var i = 1; i <= data.content.length; i++) {
                 ele.prepend("<div class='each_comment'><div class='commtentInfo'><span class='commentTidyName'>" + data.tidyName[i - 1] + "</span><span><a>" + String(i) + "楼</a><a>回复</a></span></div><div class='content'><p>" + data.content[i - 1] + "</p></div></div>");
             }
             console.log(data.content + " " + data.tidyName);
         },
         error: function (jqXHR) { console.log("Error:" + jqXHR.status); }
-    }); */
+    });
 }
 function submitComment() {
     var content = $("#commentContent").val();
@@ -77,13 +86,16 @@ function submitComment() {
     data.content = content;
     data.userName = userName;
     data.uid = id;
-    /* $.ajax({
+    $.ajax({
         type: "POST",
-        url: "http://localhost:8080/send_comment",
+        url: "http://127.0.0.1:8080/send_comment",
         data: JSON.stringify(data),
-        success: function (data) { alert("发送成功！"); }, //根据后端返回判断是否发送成功
+        success: function (data) {
+            if (data.back = "succeed") alert("发送成功！"), location.reload();
+            else alert("发送失败！");
+        },
         error: function (jqXHR) { console.log("Error:" + jqXHR.status); }
-    }) */
+    })
 }
 function toAdd() {
     window.location.href = "/userManager/add/?user=" + $("#userName").html();

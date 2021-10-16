@@ -1,5 +1,5 @@
 var data = {};
-var userName, id, colornum;
+var userName, id, colornum = 0;
 var flag = false;
 var display = new Vue({
     el: "#workArea",
@@ -7,7 +7,8 @@ var display = new Vue({
         content: '',
         object: '',
         len: '0',
-        writer: 'Anon'
+        writer: 'Anon',
+        anon: []
     },
     mounted() {
         window.object = this.object;
@@ -23,8 +24,12 @@ var display = new Vue({
                 else $(".color")[i].className = "color mdui-btn";
             }
             let color = $(".mdui-icon")[num].className.split("mdui-text-color-")[1];
-            $(".note")[0].className = "note mdui-color-" + color;
+            $(".note")[0].className = "note mdui-card mdui-color-" + color;
             colornum = num;
+        },
+        changeAnon: function (anon) {
+            this.writer = !anon.state ? "Anon" : userName;
+            anon.state = !anon.state;
         }
     },
 })
@@ -48,6 +53,7 @@ $(document).ready(function () {
         userName = window.location.search.split("&")[0].split("=")[1];
         $("#userName").html(userName);
         $(".advice")[2].innerHTML = "编辑时禁止修改表白对象";
+        $("#box2").remove();
         $("#tidyName").attr("disabled", "disabled"); //禁止修改表白对象
         id = window.location.search.split("&")[1].split("=")[1];
         editLaunch(id);
@@ -77,7 +83,7 @@ function submit() {
             // TODO
             $.ajax({
                 type: "POST",
-                url: "http://81.69.253.122:1234/send_confess",
+                url: "http://127.0.0.1:8080/send_confess",
                 data: JSON.stringify(data),
                 success: function (data) { alert("添加成功！"); location.reload(); }, //根据后端返回判断是否发送成功
                 error: function (jqXHR) { console.log("Error:" + jqXHR.status); }
@@ -88,7 +94,7 @@ function submit() {
             data.id = id;
             $.ajax({
                 type: "POST",
-                url: "http://81.69.253.122:1234/edit_confess",
+                url: "http://127.0.0.1:8080/edit_confess",
                 data: JSON.stringify(data),
                 success: function (data) { alert("编辑成功！"); toManage(); }, //根据后端返回判断是否发送成功
                 error: function (jqXHR) { console.log("Error:" + jqXHR.status); }
@@ -99,7 +105,7 @@ function submit() {
 function editLaunch(id) {  //加载编辑模式
     $.ajax({
         type: "GET",
-        url: "http://81.69.253.122:1234/edit_confess",
+        url: "http://127.0.0.1:8080/edit_confess",
         data: "id=" + id,
         success: function (data) {
             $("#content").val(data.content); //输入框 1

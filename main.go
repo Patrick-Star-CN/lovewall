@@ -13,11 +13,11 @@ import (
 )
 
 const (
-	userName = "admin"
-	password = "cxcxcx4,"
+	userName = "root"
+	password = "j10c"
 	ip       = "localhost"
 	port     = "3306"
-	dbName   = "admin"
+	dbName   = "lovewall"
 )
 
 type typeUser struct {
@@ -295,7 +295,7 @@ func getRanNUM(lim int) {
 	//获取九个不一样的随机数
 	for i := 1; i <= min(9, confessNum); i++ {
 		ran[i] = rand.Intn(lim)
-		ranStr[i] = int2str(ran[i])
+		ranStr[i] = confess[ran[i]].id
 		for j := 1; j < i; j++ {
 			if ran[i] == ran[j] {
 				i--
@@ -374,7 +374,7 @@ func getCommentFromFile(confessId string) {
 	//用于获取某表白的评论内容
 	confessCommentNum = 0
 	sqlStr := "select content, tidyname from commentdata where confessid = ?"
-	rows, err := DB.Query(sqlStr, userName)
+	rows, err := DB.Query(sqlStr, confessId)
 	if err != nil {
 		fmt.Printf("query failed, err:%v\n", err)
 		return
@@ -616,5 +616,5 @@ func main() {
 			"myTidyName": myTidyName,
 		})
 	})
-	router.Run(":1234")
+	router.Run(":8080")
 }
