@@ -60,21 +60,20 @@ function comment(num) {
     $("#submitInfo span")[0].innerHTML = "用户名：" + userName;
     $("#submitInfo span")[1].innerHTML = "你姓名的英文缩写：" + myTidyName;
     var confessid = $(".check")[num].innerHTML.split(".")[1];
-    /*  后端处理评论的工作量太大了，于是放弃这块的数据传输了
-        $.ajax({
+    $.ajax({
         type: "GET",
         url: "http://localhost:8080/manage_comment",
         data: "confessid=" + confessid, // GET请求发送字符串
         success: function (data) {
             var ele = $("#publicContainer");
             ele.html("");
-            for (var i = 1; i <= data.content.length; i++){
+            for (var i = 1; i <= data.content.length; i++) {
                 ele.prepend("<div class='each_comment'><div class='commtentInfo'><span class='commentTidyName'>" + data.tidyName[i - 1] + "</span><span><a>" + String(i) + "楼</a><a>回复</a></span></div><div class='content'><p>" + data.content[i - 1] + "</p></div></div>");
             }
             console.log(data.content + " " + data.tidyName);
         },
         error: function (jqXHR) { console.log("Error:" + jqXHR.status); }
-    }); */
+    });
 }
 function submitComment() {
     var content = $("#commentContent").val();
@@ -84,13 +83,16 @@ function submitComment() {
     data.content = content;
     data.userName = userName;
     data.uid = id;
-    /* $.ajax({
+    $.ajax({
         type: "POST",
-        url: "http://localhost:8080/send_comment",
+        url: "http://127.0.0.1:8080/send_comment",
         data: JSON.stringify(data),
-        success: function (data) { alert("发送成功！"); }, //根据后端返回判断是否发送成功
+        success: function (data) {
+            if (data.back = "succeed") alert("发送成功！"), location.reload();
+            else alert("发送失败！");
+        },
         error: function (jqXHR) { console.log("Error:" + jqXHR.status); }
-    }) */
+    })
 }
 function toAdd() {
     window.location.href = "/userManager/add/?user=" + $("#userName").html();
