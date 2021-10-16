@@ -13,11 +13,11 @@ import (
 )
 
 const (
-	userName = "admin"
-	password = "cxcxcx4,"
+	userName = "root"
+	password = "j10c"
 	ip       = "localhost"
 	port     = "3306"
-	dbName   = "admin"
+	dbName   = "lovewall"
 )
 
 type typeUser struct {
@@ -616,5 +616,5 @@ func main() {
 			"myTidyName": myTidyName,
 		})
 	})
-	router.Run(":1234")
+	router.Run(":8080")
 }

@@ -1,5 +1,11 @@
 var userName;
 var total;
+var noteColor = [
+    "mdui-color-amber-100",
+    "mdui-color-blue-100",
+    "mdui-color-red-100",
+    "mdui-color-purple-100"
+];
 $(document).ready(function () {
     userName = window.location.search.split("=")[1]; //从 URL 获取 用户名
     if (userName == undefined) {
@@ -25,9 +31,9 @@ function getMyConfess(userName) {
             if (total > 0)
                 for (i = 0; i < total; i++) {
                     var ele = document.createElement("div");
-                    ele.className = "note mdui-card";
+                    ele.className = "note mdui-card " + noteColor[Number(data.color[i])];
                     ele.setAttribute("title", String(i));
-                    ele.innerHTML = "<span class='quote'>“</span><span class='sheet'>" + data.content[i] + "</span><div class='attach'><span class='check'>No." + data.id[i] + "</span><span class='object'>—— " + data.tidyName[i] + "</span></div><div class='tools mdui-btn-group'><button class='edit mdui-btn mdui-btn-dense mdui-ripple' onclick='edit(" + String(i) + ")'><i class='mdui-icon material-icons'>edit</i></button><button class='delect mdui-btn mdui-btn-dense mdui-ripple' onclick='delect(" + String(i) + ")'><i class='mdui-icon material-icons'>delete</i></button></div>";
+                    ele.innerHTML = "<div class='object'>To " + data.tidyName[i] + " </div><span class='quote'>“</span><span class='sheet'>" + data.content[i] + "</span><div class='attach'><span class='check'>No." + data.id[i] + "</span><span class='writer'></span></div><div class='tools mdui-btn-group'><button class='edit mdui-btn mdui-btn-dense mdui-ripple' onclick='edit(" + String(i) + ")'><i class='mdui-icon material-icons'>edit</i></button><button class='delect mdui-btn mdui-btn-dense mdui-ripple' onclick='delect(" + String(i) + ")'><i class='mdui-icon material-icons'>delete</i></button></div>";
                     document.getElementsByClassName("column")[i % 3].appendChild(ele);
                 }
             else {

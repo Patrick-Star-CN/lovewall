@@ -1,5 +1,10 @@
 var userName, myTidyName;
-
+var noteColor = [
+    "mdui-color-amber-100",
+    "mdui-color-blue-100",
+    "mdui-color-red-100",
+    "mdui-color-purple-100"
+];
 $(document).ready(function () {
     $("#userName").html(getDataFromURL());
     if (userName == undefined) {
@@ -24,6 +29,7 @@ function getMessConfess() {
         url: "http://127.0.0.1:8080/main",
         data: "user=" + userName,
         success: function (data) {
+            var ele0 = $(".note");
             var ele1 = $(".sheet");
             var ele2 = $(".object");
             var ele3 = $(".check");
@@ -31,6 +37,7 @@ function getMessConfess() {
             myTidyName = data.myTidyName;
             // TODO writer 匿名 Anon
             for (var i = 1; i <= data.content.length - 1; i++) { //用户自己发表的表白要 pin 在墙头
+                ele0[i - 1].className = "mdui-card note " + noteColor[Number(data.color[i])];
                 ele1[i - 1].innerHTML = data.content[i];
                 ele2[i - 1].innerHTML = "To " + data.tidyName[i];
                 ele3[i - 1].innerHTML = "No." + data.id[i];

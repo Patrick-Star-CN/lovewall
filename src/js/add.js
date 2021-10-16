@@ -48,6 +48,7 @@ $(document).ready(function () {
         userName = window.location.search.split("&")[0].split("=")[1];
         $("#userName").html(userName);
         $(".advice")[2].innerHTML = "编辑时禁止修改表白对象";
+        $("#box2").remove();
         $("#tidyName").attr("disabled", "disabled"); //禁止修改表白对象
         id = window.location.search.split("&")[1].split("=")[1];
         editLaunch(id);
