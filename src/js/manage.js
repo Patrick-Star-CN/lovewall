@@ -24,7 +24,7 @@ $(document).ready(function () {
 function getMyConfess(userName) {
     $.ajax({
         type: "GET",
-        url: "http://127.0.0.1:8080/manage",
+        url: "http://81.69.253.122:1234/manage",
         data: "user=" + userName, // GET请求发送字符串
         success: function (data) {
             total = data.content.length;
@@ -61,7 +61,7 @@ function delect(num) {
         var id = $(".check")[pos].innerHTML.split(".")[1];
         $.ajax({
             type: "GET",
-            url: "http://127.0.0.1:8080/delete_confess",
+            url: "http://81.69.253.122:1234/delete_confess",
             data: "id=" + id, // GET请求发送字符串
             success: function (data) {
                 if (data.back == "succeed") {

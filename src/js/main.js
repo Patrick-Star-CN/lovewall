@@ -26,7 +26,7 @@ function getDataFromURL() {
 function getMessConfess() {
     $.ajax({
         type: "GET",
-        url: "http://127.0.0.1:8080/main",
+        url: "http://81.69.253.122:1234/main",
         data: "user=" + userName,
         success: function (data) {
             var ele0 = $(".note");
@@ -63,7 +63,7 @@ function comment(num) {
     var confessid = $(".check")[num].innerHTML.split(".")[1];
     $.ajax({
         type: "GET",
-        url: "http://127.0.0.1:8080/manage_comment",
+        url: "http://81.69.253.122:1234/manage_comment",
         data: "confessid=" + confessid, // GET请求发送字符串
         success: function (data) {
             var ele = $("#publicContainer");
@@ -88,7 +88,7 @@ function submitComment() {
     data.uid = id;
     $.ajax({
         type: "POST",
-        url: "http://127.0.0.1:8080/send_comment",
+        url: "http://81.69.253.122:1234/send_comment",
         data: JSON.stringify(data),
         success: function (data) {
             if (data.back = "succeed") alert("发送成功！"), location.reload();
