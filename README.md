@@ -82,7 +82,7 @@
   go run main.go
   ```
 
-	If the program doesn't report an error about `mysql` , enjoy it!
+  If the program doesn't report an error about `mysql` , enjoy it!
 
 ## Thanks
 
